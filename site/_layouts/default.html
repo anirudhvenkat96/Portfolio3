@@ -5,26 +5,26 @@
 
 <body>
 
-    {% if site.data.general_settings.google-analytics %}
-        {% include google-analytics.html %}
-    {% endif %}
+  {% if site.data.general_settings.google-analytics %}
+    {% include google-analytics.html %}
+  {% endif %}
 
-    {% include header.html %}
+  {% include header.html %}
 
-    {{ content }}
+  {{ content }}
 
-    <!--
-        Bookshop components are accessed using the bookshop tag,
-        using the same syntax as the standard Jekyll include tag.
-    -->
-    {% bookshop_include page content_blocks=page.content_blocks page_theme=page.page_theme %}
+  <!--
+    Bookshop components are accessed using the bookshop tag,
+    using the same syntax as the standard Jekyll include tag.
+  -->
+  {% bookshop_include page content_blocks=page.content_blocks page_theme=page.page_theme %}
 
-    <div class="top" title="Top"><ion-icon name="arrow-up"></ion-icon></div>
+  <div class="top" title="Top"><ion-icon name="arrow-up"></ion-icon></div>
 
-    {% include footer.html %}
+  {% include footer.html %}
 
-    <script src="{{ '/assets/js/common.js' | relative_url }}"></script>
-    <script src="{{ '/assets/js/scripts.js' | relative_url }}"></script>
+  <script src="{{ '/js/common.js' | relative_url }}"></script>
+  <script src="{{ '/js/scripts.js' | relative_url }}"></script>
 
 </body>
 </html>
