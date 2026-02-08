@@ -1,4 +1,6 @@
 title: Vonge
+url: "https://anirudhvenkat96.github.io"
+baseurl: "/Portfolio3"
 
 plugins:
   - jekyll-bookshop
