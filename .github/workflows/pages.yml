@@ -18,32 +18,37 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - name: Checkout
+        uses: actions/checkout@v4
 
+      # Bookshop uses Node tooling
       - name: Setup Node
         uses: actions/setup-node@v4
         with:
           node-version: "20"
 
+      - name: Install npm dependencies
+        run: npm ci
+
+      - name: Bookshop/Jekyll setup
+        run: npm run jekyll:install
+
+      # Jekyll lives in /site (your _config.yml is there)
       - name: Setup Ruby
         uses: ruby/setup-ruby@v1
         with:
           ruby-version: "3.2"
           bundler-cache: true
+          working-directory: site
 
-      - name: Install npm dependencies
-        run: npm ci
-
-      - name: Install Jekyll deps (Bookshop/Jekyll install)
-        run: npm run jekyll:install
-
-      - name: Build site
-        run: bundle exec jekyll build
+      - name: Build site (from /site)
+        run: bundle exec jekyll build --trace
+        working-directory: site
 
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: ./_site
+          path: site/_site
 
   deploy:
     needs: build
