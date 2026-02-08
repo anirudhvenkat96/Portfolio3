@@ -1,4 +1,4 @@
-<!-- begin testimonials -->
+<!-- begin testimonials / work experience -->
 <section class="section testimonials animate">
   <div class="container">
     <div class="row">
@@ -20,15 +20,16 @@
         </div>
 
         {% if include.show_testimonials %}
-        <div class="testimonials__slider my-slider">
-          {% for testimonial-item in site.testimonials %}
-            {% bookshop testimonial-card testimonial-item=testimonial-item %}
-          {% endfor %}
-        </div>
+          {% assign experience_items = site.testimonials | sort: "order" %}
+          <div class="testimonials__slider my-slider">
+            {% for testimonial_item in experience_items %}
+              {% bookshop testimonial-card testimonial_item=testimonial_item %}
+            {% endfor %}
+          </div>
         {% endif %}
 
       </div>
     </div>
   </div>
 </section>
-<!-- end testimonials -->
+<!-- end testimonials / work experience -->
