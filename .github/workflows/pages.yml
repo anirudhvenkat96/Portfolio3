@@ -35,8 +35,7 @@ jobs:
         run: npm ci
 
       - name: Install Jekyll deps (Bookshop/Jekyll install)
-       run: npm run jekyll:install
-
+        run: npm run jekyll:install
 
       - name: Build site
         run: bundle exec jekyll build
