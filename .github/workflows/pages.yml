@@ -34,8 +34,9 @@ jobs:
       - name: Install npm dependencies
         run: npm ci
 
-      - name: Install Jekyll dependencies
-        run: npm run jekyll:install || true
+      - name: Install Jekyll deps (Bookshop/Jekyll install)
+       run: npm run jekyll:install
+
 
       - name: Build site
         run: bundle exec jekyll build
