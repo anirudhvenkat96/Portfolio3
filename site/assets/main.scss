@@ -7,25 +7,19 @@
   margin: 24px 0;
 }
 
-.c-image-carousel__track {
+.c-image-carousel__head {
   display: flex;
-  gap: 16px;
-  overflow-x: auto;
-  scroll-snap-type: x mandatory;
-  -webkit-overflow-scrolling: touch;
-  padding-bottom: 8px;
+  justify-content: flex-end;
+  gap: 10px;
+  margin-bottom: 10px;
 }
 
-.c-image-carousel__slide {
-  flex: 0 0 100%;
-  scroll-snap-align: start;
-  margin: 0;
-}
-
-@media (min-width: 900px) {
-  .c-image-carousel__slide {
-    flex-basis: 80%;
-  }
+.c-image-carousel__btn {
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+  padding: 6px 8px;
+  border-radius: 10px;
 }
 
 .c-image-carousel__caption {
