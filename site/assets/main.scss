@@ -2,3 +2,54 @@
 ---
 
 {% bookshop_scss %}
+
+/* --- Work Experience logo badge overrides --- */
+
+.c-work-logo-wrap {
+  display: flex !important;
+  justify-content: center !important;
+  align-items: center !important;
+  width: 100% !important;
+  margin: 0 0 16px 0 !important;
+
+  /* defeat any circular avatar masking from theme */
+  border-radius: 0 !important;
+  overflow: visible !important;
+  background: transparent !important;
+  clip-path: none !important;
+  -webkit-mask-image: none !important;
+  mask-image: none !important;
+}
+
+.c-work-logo-badge {
+  width: 180px;
+  height: 72px;
+  background: #fff;
+  border-radius: 14px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  box-shadow: 0 4px 12px rgba(0,0,0,0.10);
+  overflow: hidden;
+}
+
+.c-work-logo-img {
+  max-width: 140px;
+  max-height: 40px;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+  display: block;
+
+  border-radius: 0 !important;
+  clip-path: none !important;
+  -webkit-mask-image: none !important;
+  mask-image: none !important;
+}
+
+.c-work-client-info {
+  width: 100%;
+  text-align: center;
+}
