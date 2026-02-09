@@ -15,5 +15,7 @@ The plan should be organized around a connected network of streets, parks, and g
 The layout should integrate the key design principles established throughout this plan:
 Stadium-informed programming should activate the edge closest to the stadium with plazas, event spaces, and game-day amenities. Year-round vibrancy should be achieved through a mix of shops, homes, and civic uses that sustain economic activity beyond the football season.
 
+![Street View]({{ '/images/hamburg04.jpg' | relative_url }}){: width="1200" height="900"}
+
 Sensitivity to residential neighbors should be expressed through landscaped buffers, smaller-scale buildings, and new greenways that link existing neighborhoods to the stadium district.
 Sustainability should underpin every element, from green infrastructure and rain gardens to compact development that encourages walking, biking, and transit use. Together, these components can create a lively, resilient, and inclusive environment: one that captures the excitement of the stadium while offering a lasting contribution to Hamburg’s identity. The result should be a neighborhood that feels distinctly Western New York: welcoming, community-oriented, and built to evolve over time.
