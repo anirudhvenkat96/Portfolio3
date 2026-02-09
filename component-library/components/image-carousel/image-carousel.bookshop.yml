@@ -1,0 +1,13 @@
+spec:
+  label: Image Carousel
+  description: A simple scroll-snap image carousel.
+  icon: photo_library
+props:
+  images:
+    type: array
+    label: Images
+    default: []
+  alt:
+    type: string
+    label: Alt text (fallback)
+    default: ""
