@@ -1,5 +1,5 @@
 ---
-date: 2021-01-05 05:20:35 +0300
+date: 2025-09-01 05:20:35 +0300
 title: Buffalo Bills Stadium Impact Area Plan
 subtitle: Zoning Reform, Comprehensive Planning, Public Enagagement
 image: '/images/project-9.jpg'
