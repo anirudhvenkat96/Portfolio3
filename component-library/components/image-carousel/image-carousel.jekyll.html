@@ -1,16 +1,13 @@
 {% assign images = include.images | default: empty %}
 {% if images and images.size > 0 %}
-<section class="c-image-carousel" aria-label="Image carousel">
-  <div class="c-image-carousel__head">
-    <button class="c-image-carousel__btn prev" type="button" aria-label="Previous slide">
-      <ion-icon name="arrow-back"></ion-icon>
-    </button>
-    <button class="c-image-carousel__btn next" type="button" aria-label="Next slide">
-      <ion-icon name="arrow-forward"></ion-icon>
-    </button>
-  </div>
 
-  <div class="c-image-carousel__slider my-slider">
+{% comment %}
+  Unique-ish id so multiple carousels on one page don’t conflict.
+{% endcomment %}
+{% assign carousel_id = "carousel-" | append: page.slug | append: "-" | append: include.alt | slugify %}
+
+<section class="c-image-carousel" aria-label="{{ include.alt | default: 'Image carousel' | escape }}">
+  <div class="c-image-carousel__slider js-image-carousel" data-carousel-id="{{ carousel_id }}">
     {% for img in images %}
       <div class="c-image-carousel__slide">
         <img
@@ -27,5 +24,17 @@
       </div>
     {% endfor %}
   </div>
+
+  <div class="c-image-carousel__controls" data-controls-container="{{ carousel_id }}">
+    <button class="c-image-carousel__btn" type="button" data-controls="prev" aria-label="Previous slide">
+      <ion-icon name="arrow-back"></ion-icon>
+    </button>
+    <button class="c-image-carousel__btn" type="button" data-controls="next" aria-label="Next slide">
+      <ion-icon name="arrow-forward"></ion-icon>
+    </button>
+  </div>
+
+  <div class="c-image-carousel__nav" data-nav-container="{{ carousel_id }}" aria-label="Carousel pagination"></div>
 </section>
+
 {% endif %}
