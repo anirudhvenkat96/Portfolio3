@@ -7,26 +7,33 @@
   margin: 24px 0;
 }
 
-.c-image-carousel__head {
+.c-image-carousel__controls {
   display: flex;
   justify-content: flex-end;
   gap: 10px;
-  margin-bottom: 10px;
+  margin-top: 10px;
 }
 
 .c-image-carousel__btn {
   border: 0;
-  background: transparent;
+  background: #fff;
+  border-radius: 12px;
+  padding: 8px 10px;
   cursor: pointer;
-  padding: 6px 8px;
-  border-radius: 10px;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.08);
 }
 
-.c-image-carousel__caption {
-  margin-top: 8px;
-  font-size: 0.95rem;
-  opacity: 0.8;
+.c-image-carousel__nav {
+  margin-top: 10px;
 }
+
+/* tiny-slider dots (basic) */
+.c-image-carousel__nav .tns-nav button {
+  width: 10px;
+  height: 10px;
+  border-radius: 999px;
+}
+
 
 
 /* --- Work Experience logo badge overrides --- */
