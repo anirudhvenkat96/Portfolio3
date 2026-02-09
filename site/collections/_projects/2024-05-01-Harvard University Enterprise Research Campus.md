@@ -1,7 +1,7 @@
 ---
-date: 2021-01-15 08:20:35 +0300
-title: Desk setup
-subtitle: Photography
+date: 2024-05-01 08:20:35 +0300
+title: Harvard University Enterprise Research Campus
+subtitle: Comprehensive Master Planning, Development Analysis, Test Fits, Public Engagement 
 image: '/images/project-1.jpg'
 ---
 
