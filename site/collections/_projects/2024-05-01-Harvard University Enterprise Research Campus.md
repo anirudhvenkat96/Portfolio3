@@ -2,7 +2,7 @@
 date: 2024-05-01 08:20:35 +0300
 title: Harvard University Enterprise Research Campus
 subtitle: Comprehensive Master Planning, Development Analysis, Test Fits, Public Engagement
-image: /images/project-1.jpg
+image: /images/erc (1).jpg
 
 carousel_images:
   - src: /images/hamburg01.jpg
