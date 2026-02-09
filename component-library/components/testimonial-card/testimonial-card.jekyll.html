@@ -8,15 +8,9 @@
         <div
           class="{{ c }}__image-container"
           style="
-            width: auto !important;
-            height: auto !important;
-            border-radius: 0 !important;
-            overflow: visible !important;
-            background: transparent !important;
             display: flex;
             justify-content: center;
-            align-items: center;
-            margin-bottom: 12px;
+            margin-bottom: 16px;
           "
         >
           <div
@@ -24,24 +18,21 @@
             style="
               background: #ffffff;
               border-radius: 14px;
-              padding: 14px 18px;
-              display: inline-flex;
+              width: 180px;
+              height: 72px;
+              display: flex;
               align-items: center;
               justify-content: center;
-              min-width: 160px;
-              min-height: 64px;
               box-shadow: 0 4px 12px rgba(0,0,0,0.10);
             "
           >
             <img
-              class="{{ c }}__client-avatar"
               loading="lazy"
               src="{{ include.testimonial_item.logo | relative_url }}"
               alt="{{ include.testimonial_item.company | default: 'Company' }} logo"
               style="
-                border-radius: 0 !important;
-                max-height: 40px;
                 max-width: 140px;
+                max-height: 40px;
                 width: auto;
                 height: auto;
                 object-fit: contain;
@@ -52,7 +43,7 @@
         </div>
       {% endif %}
 
-      <div class="{{ c }}__client-info">
+      <div class="{{ c }}__client-info" style="text-align:center;">
         {% if include.testimonial_item.company %}
           <h3 class="{{ c }}__client-name">{{ include.testimonial_item.company }}</h3>
         {% endif %}
