@@ -3,6 +3,38 @@
 
 {% bookshop_scss %}
 
+.c-image-carousel {
+  margin: 24px 0;
+}
+
+.c-image-carousel__track {
+  display: flex;
+  gap: 16px;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+  padding-bottom: 8px;
+}
+
+.c-image-carousel__slide {
+  flex: 0 0 100%;
+  scroll-snap-align: start;
+  margin: 0;
+}
+
+@media (min-width: 900px) {
+  .c-image-carousel__slide {
+    flex-basis: 80%;
+  }
+}
+
+.c-image-carousel__caption {
+  margin-top: 8px;
+  font-size: 0.95rem;
+  opacity: 0.8;
+}
+
+
 /* --- Work Experience logo badge overrides --- */
 
 .c-work-logo-wrap {
