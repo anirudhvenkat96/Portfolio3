@@ -1,22 +1,31 @@
 {% assign images = include.images | default: empty %}
 {% if images and images.size > 0 %}
-  <div class="c-image-carousel">
-    <div class="c-image-carousel__track" aria-label="Image carousel">
-      {% for img in images %}
-        <figure class="c-image-carousel__slide">
-          <img
-            loading="lazy"
-            src="{{ img.src | relative_url }}"
-            alt="{{ img.alt | default: include.alt | escape }}"
-            width="1200"
-            height="900"
-            style="width:100%; height:auto; display:block; object-fit:cover; border-radius:12px;"
-          >
-          {% if img.caption %}
-            <figcaption class="c-image-carousel__caption">{{ img.caption }}</figcaption>
-          {% endif %}
-        </figure>
-      {% endfor %}
-    </div>
+<section class="c-image-carousel" aria-label="Image carousel">
+  <div class="c-image-carousel__head">
+    <button class="c-image-carousel__btn prev" type="button" aria-label="Previous slide">
+      <ion-icon name="arrow-back"></ion-icon>
+    </button>
+    <button class="c-image-carousel__btn next" type="button" aria-label="Next slide">
+      <ion-icon name="arrow-forward"></ion-icon>
+    </button>
   </div>
+
+  <div class="c-image-carousel__slider my-slider">
+    {% for img in images %}
+      <div class="c-image-carousel__slide">
+        <img
+          loading="lazy"
+          src="{{ img.src | relative_url }}"
+          alt="{{ img.alt | default: include.alt | escape }}"
+          width="1200"
+          height="900"
+          style="width:100%; height:auto; display:block; object-fit:cover; border-radius:12px;"
+        >
+        {% if img.caption %}
+          <div class="c-image-carousel__caption">{{ img.caption }}</div>
+        {% endif %}
+      </div>
+    {% endfor %}
+  </div>
+</section>
 {% endif %}
