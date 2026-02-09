@@ -5,12 +5,18 @@ subtitle: Comprehensive Master Planning, Development Analysis, Test Fits, Public
 image: '/images/project-1.jpg'
 ---
 
-In qua quid est boni praeter summam voluptatem, et eam sempiternam? Cur post Tarentum ad Archytam? Qua ex cognitione facilior facta est investigatio rerum occultissimarum. Negat enim tenuissimo victu, id est contemptissimis escis et potionibus, minorem voluptatem.
+The concept plan envisions the Stadium Economic Impact Area as a complete neighborhood: one that celebrates the energy of the new Buffalo Bills Stadium while thriving as a destination in its own right. This should not be a single-use district, but a walkable, mixed-use community that combines housing, retail, recreation, and open space in a cohesive urban framework.
 
-![Palm trees](/images/image-example-3.jpg){: width="1200" height="900"}
+![Aerial View]({{ '/images/hamburg02.jpg' | relative_url }}){: width="1200" height="900"}
 
-Praeteritis, inquit, gaudeo. Praeteritis, inquit, gaudeo. Quod, inquit, quamquam voluptatibus quibusdam est saepe iucundius, tamen expetitur propter voluptatem. Scientiam pollicentur, quam non erat mirum sapientiae cupido patria esse cariorem. Non quaeritur autem quid naturae tuae consentaneum sit, sed quid disciplinae. Ita ne hoc quidem modo paria peccata sunt. Ita prorsus, inquam; Nunc ita separantur, ut disiuncta sint, quo nihil potest esse perversius. Virtutibus igitur rectissime mihi videris et ad consuetudinem nostrae orationis.
+The plan should be organized around a connected network of streets, parks, and gathering spaces that form the backbone of the district. Near the stadium, the plan should encourage an active commercial and entertainment core, with restaurants, shops, and flexible spaces that support game-day crowds as well as daily life. Moving westward, these higher-intensity uses should transition seamlessly into neighborhood-scale housing, community greens, and small plazas that anchor the new development in everyday activity.
 
-![Sea](/images/image-example-4.jpg){: width="1200" height="900"}
+![Street View]({{ '/images/hamburg03.jpg' | relative_url }}){: width="1200" height="900"}
 
-Defecerit Sed isti ipsi, qui voluptate et dolore omnia metiuntur, nonne clamant sapienti plus semper adesse quod velit quam quod nolit? Quae quidem sapientes sequuntur duce natura tamquam videntes; Quod enim dissolutum sit, id esse sine sensu, quod autem sine sensu. Sunt omnia Longum est enim ad omnia respondere, quae a te dicta sunt. Nam cui proposito sit conservatio sui, necesse est huic partes quoque sui caras suo genere laudabiles servari.
+The layout should integrate the key design principles established throughout this plan:
+Stadium-informed programming should activate the edge closest to the stadium with plazas, event spaces, and game-day amenities. Year-round vibrancy should be achieved through a mix of shops, homes, and civic uses that sustain economic activity beyond the football season.
+
+![Street View]({{ '/images/hamburg04.jpg' | relative_url }}){: width="1200" height="900"}
+
+Sensitivity to residential neighbors should be expressed through landscaped buffers, smaller-scale buildings, and new greenways that link existing neighborhoods to the stadium district.
+Sustainability should underpin every element, from green infrastructure and rain gardens to compact development that encourages walking, biking, and transit use. Together, these components can create a lively, resilient, and inclusive environment: one that captures the excitement of the stadium while offering a lasting contribution to Hamburg’s identity. The result should be a neighborhood that feels distinctly Western New York: welcoming, community-oriented, and built to evolve over time.
