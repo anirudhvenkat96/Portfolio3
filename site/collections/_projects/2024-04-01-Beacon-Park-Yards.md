@@ -1,5 +1,5 @@
 ---
-date: 2025-09-01 05:20:35 +0300
+date: 2024-04-01 05:20:35 +0300
 title: Beacon Park Yards
 subtitle: Highway Replacement, Long term Planning, Comprehensive Master Plans, Visualization, Physical Modeling
 image: '/images/bpy01.jpg'
