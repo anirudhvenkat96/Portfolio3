@@ -2,6 +2,8 @@ title: Vonge
 url: "https://venkatanirudh.com"
 baseurl: ""
 
+google_analytics: G-FVK3QEDQFZ
+
 plugins:
   - jekyll-bookshop
   - jekyll-sitemap
