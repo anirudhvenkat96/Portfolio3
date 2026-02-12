@@ -5,12 +5,15 @@
       <div class="c-header__inner">
 
         <div class="logo">
-          <a class="logo__link" href="{{ site.baseurl }}/">
-          {%if site.data.navigation.logo_image %}
-            <img class="logo__image" src="{{ site.baseurl }}{{ site.data.navigation.logo_image }}" alt="{{ site.data.general_settings.title }}">
-          {% else %}
-            {{ site.data.settings.title }}
-          {% endif %}
+          <a class="logo__link" href="{{ '/' | relative_url }}">
+            {% if site.data.navigation.logo_image %}
+              <img
+                class="logo__image"
+                src="{{ site.data.navigation.logo_image | relative_url }}"
+                alt="{{ site.data.general_settings.title }}">
+            {% else %}
+              {{ site.data.general_settings.title }}
+            {% endif %}
           </a>
         </div>
 
@@ -23,27 +26,40 @@
 
             <div class="nav__title">Menu</div>
 
-              <ul class="nav__list list-reset">
-
+            <ul class="nav__list list-reset">
               {% for item in site.data.navigation.menu__settings.menu__items %}
+                {% assign item_url = item.url | relative_url %}
+
                 {% if item.submenu %}
-                <li class="nav__item dropdown">
-                  <span class="nav__link dropdown-toggle">{{ item.title }} <ion-icon class="arrow-down" name="chevron-down"></ion-icon></span>
-                  <div class="dropdown-menu">
-                    {% for submenu-item in item.submenu %}
-                      <a href="{{ submenu-item.url }}" class="nav__link{% if page.url == submenu-item.url %} active-link{% endif %}">{{submenu-item.title}}</a>
-                    {% endfor %}
-                  </div>
-                </li>
+                  <li class="nav__item dropdown">
+                    <span class="nav__link dropdown-toggle">
+                      {{ item.title }} <ion-icon class="arrow-down" name="chevron-down"></ion-icon>
+                    </span>
+
+                    <div class="dropdown-menu">
+                      {% for submenu_item in item.submenu %}
+                        {% assign sub_url = submenu_item.url | relative_url %}
+                        <a
+                          href="{{ sub_url }}"
+                          class="nav__link{% if page.url == sub_url %} active-link{% endif %}">
+                          {{ submenu_item.title }}
+                        </a>
+                      {% endfor %}
+                    </div>
+                  </li>
 
                 {% else %}
-                <li class="nav__item">
-                  <a href="{{ item.url | relative_url }}" class="nav__link{% if page.url == item.url %} active-link{% endif %}">{{ item.title }}</a>
-                </li>
+                  <li class="nav__item">
+                    <a
+                      href="{{ item_url }}"
+                      class="nav__link{% if page.url == item_url %} active-link{% endif %}">
+                      {{ item.title }}
+                    </a>
+                  </li>
                 {% endif %}
               {% endfor %}
-
             </ul>
+
           </div>
 
           {% bookshop_include social-link %}
