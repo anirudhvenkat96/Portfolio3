@@ -1,5 +1,5 @@
 ---
-date: 2025-09-01 05:20:35 +0300
+date: 2024-01-12 05:20:35 +0300
 title: Allston Development Potential
 subtitle: Development Potential Analysis, Data Visualization
 image: '/images/adp01.jpg'
