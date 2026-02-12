@@ -8,5 +8,5 @@ menu__settings:
       url: '/projects/'
     - title: 'Blog'
       url: '/blog/'
-    - title: 'About'
+    - title: 'About me'
       url: '/about/'
