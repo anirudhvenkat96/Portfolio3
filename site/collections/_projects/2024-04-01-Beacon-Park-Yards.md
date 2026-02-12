@@ -2,7 +2,7 @@
 date: 2024-04-01 05:20:35 +0300
 title: Beacon Park Yards
 subtitle: Highway Replacement, Long term Planning, Comprehensive Master Plans, Visualization, Physical Modeling
-image: '/images/bpy01.jpg'
+image: /images/bpy01.jpg
 ---
 The concept plan envisions the Stadium Economic Impact Area as a complete neighborhood: one that celebrates the energy of the new Buffalo Bills Stadium while thriving as a destination in its own right. This should not be a single-use district, but a walkable, mixed-use community that combines housing, retail, recreation, and open space in a cohesive urban framework.
 
