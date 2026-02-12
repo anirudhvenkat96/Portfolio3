@@ -86,3 +86,14 @@
   width: 100%;
   text-align: center;
 }
+
+.portfolio-link {
+  color: #1f6feb;        // strong blue
+  font-weight: 600;
+  text-decoration: underline;
+  transition: opacity 0.2s ease;
+}
+
+.portfolio-link:hover {
+  opacity: 0.7;
+}
