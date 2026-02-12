@@ -1,5 +1,5 @@
 ---
-date: 2025-05-01 05:20:35 +0300
+date: 2024-05-01 05:20:35 +0300
 title: Harvard University Enterprise Research Campus
 subtitle: Long Term Planning, Development Analysis, Test Fits
 image: '/images/erc (1).jpg'
