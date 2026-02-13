@@ -5,18 +5,18 @@ subtitle: Zoning Reform, Comprehensive Planning, Public Engagement
 image: /images/hamburg01.jpg
 ---
 
-The concept plan envisions the Stadium Economic Impact Area as a complete neighborhood: one that celebrates the energy of the new Buffalo Bills Stadium while thriving as a destination in its own right. This should not be a single-use district, but a walkable, mixed-use community that combines housing, retail, recreation, and open space in a cohesive urban framework.
+The Stadium Economic Impact Area Plan positions the district as a complete, mixed-use neighborhood that extends beyond the game-day experience. Rather than a single-use entertainment zone, the framework supports a walkable urban environment that integrates housing, retail, recreation, and open space within a coherent public realm structure.
 
 ![Aerial view of the district]({{ '/images/hamburg02.jpg' | relative_url }}){: width="1200" height="900"}
 
-The plan should be organized around a connected network of streets, parks, and gathering spaces that form the backbone of the district. Near the stadium, the plan should encourage an active commercial and entertainment core, with restaurants, shops, and flexible spaces that support game-day crowds as well as daily life. Moving westward, these higher-intensity uses should transition seamlessly into neighborhood-scale housing, community greens, and small plazas that anchor the new development in everyday activity.
+The plan is organized around a connected network of streets, parks, and civic spaces that establish long-term urban form. Uses are strategically distributed: an active commercial and entertainment core is concentrated closest to the stadium, accommodating restaurants, shops, and flexible event spaces capable of serving both peak crowds and everyday activity. Moving westward, intensity transitions to neighborhood-scale housing, community greens, and small public plazas that support daily life and reinforce residential character.
 
 ![Street-level perspective near the stadium]({{ '/images/hamburg03.jpg' | relative_url }}){: width="1200" height="900"}
 
-The layout should integrate the key design principles established throughout this plan: Stadium-informed programming should activate the edge closest to the stadium with plazas, event spaces, and game-day amenities. Year-round vibrancy should be achieved through a mix of shops, homes, and civic uses that sustain economic activity beyond the football season.
+Design principles developed through the broader planning process inform the spatial strategy. Stadium-facing edges are programmed with plazas, gathering spaces, and event-supportive amenities to capture economic activity. A balanced mix of residential, commercial, and civic uses ensures year-round viability and reduces reliance on seasonal football traffic.
 
 ![Public realm and open space concept]({{ '/images/hamburg04.jpg' | relative_url }}){: width="1200" height="900"}
 
-Sensitivity to residential neighbors should be expressed through landscaped buffers, smaller-scale buildings, and new greenways that link existing neighborhoods to the stadium district. Sustainability should underpin every element, from green infrastructure and rain gardens to compact development that encourages walking, biking, and transit use.
+The framework also prioritizes compatibility with adjacent neighborhoods. Building scale steps down toward existing homes, landscaped buffers soften transitions, and new greenways improve connectivity between surrounding residential areas and the stadium district. Sustainability measures—including green infrastructure, compact block structure, and multimodal circulation—are integrated to support long-term resilience.
 
-Together, these components can create a lively, resilient, and inclusive environment—one that captures the excitement of the stadium while offering a lasting contribution to Hamburg’s identity. The result should be a neighborhood that feels distinctly Western New York: welcoming, community-oriented, and built to evolve over time.
+Collectively, the plan establishes a phased, implementable structure for growth. It leverages the presence of the new stadium while grounding redevelopment in walkability, urban form, and durable neighborhood character appropriate to Hamburg and Western New York.
