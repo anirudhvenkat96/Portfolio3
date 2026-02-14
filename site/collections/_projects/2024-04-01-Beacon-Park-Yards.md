@@ -25,6 +25,8 @@ By extending the deck footprint, new parcels emerge that allow a graduated trans
 
 ![bpy03.jpg]({{ '/images/bpy03.jpg' | relative_url }}){: width="1200" height="900"}
 
+![bpy03b.jpg]({{ '/images/bpy03b.jpg' | relative_url }}){: width="1200" height="900"}
+
 A detailed physical model was fabricated to evaluate topography, rail alignment, roadway relationships, and massing in three dimensions. The model allowed rapid iteration of parcel boundaries, vertical connections, and public space hierarchy while communicating complex infrastructural layering to stakeholders.
 
 The tactile model became a key tool for understanding how deck elevation, ramp transitions, and open space terraces could reconcile commuter rail operations with neighborhood-scale urbanism.
