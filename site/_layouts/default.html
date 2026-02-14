@@ -19,12 +19,18 @@
   -->
   {% bookshop_include page content_blocks=page.content_blocks page_theme=page.page_theme %}
 
-  <div class="top" title="Top"><ion-icon name="arrow-up"></ion-icon></div>
+  <div class="top" title="Top">
+    <ion-icon name="arrow-up"></ion-icon>
+  </div>
 
   {% include footer.html %}
 
+  <!-- Core Theme Scripts -->
   <script src="{{ '/js/common.js' | relative_url }}"></script>
   <script src="{{ '/js/scripts.js' | relative_url }}"></script>
+
+  <!-- Project Carousel Script -->
+  <script src="{{ '/js/carousel.js' | relative_url }}"></script>
 
 </body>
 </html>
