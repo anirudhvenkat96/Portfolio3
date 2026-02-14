@@ -13,7 +13,7 @@ The project evaluates alternative deck configurations, rail yard relocation stra
 
 ### Deck Variation Graphic
 
-![bpy02.jpg](/images/bpy02.jpg){: width="1200" height="900"}
+![bpy02.jpg]({{ '/images/bpy02.jpg' | relative_url }}){: width="1200" height="900"}
 
 Multiple deck scenarios were tested to understand how varying structural extents would impact developable land, public open space, and adjacency to existing neighborhoods. The comparison between east deck and no east deck conditions illustrates how infrastructure investment directly influences block formation, skyline massing, and ground-level experience.
 
@@ -23,7 +23,7 @@ By extending the deck footprint, new parcels emerge that allow a graduated trans
 
 ### Physical Model
 
-![bpy03.jpg](/images/bpy03.jpg){: width="1200" height="900"}
+![bpy03.jpg]({{ '/images/bpy03.jpg' | relative_url }}){: width="1200" height="900"}
 
 A detailed physical model was fabricated to evaluate topography, rail alignment, roadway relationships, and massing in three dimensions. The model allowed rapid iteration of parcel boundaries, vertical connections, and public space hierarchy while communicating complex infrastructural layering to stakeholders.
 
@@ -33,11 +33,11 @@ The tactile model became a key tool for understanding how deck elevation, ramp t
 
 ### Malvern Link Condition
 
-![bpy04.jpg](/images/bpy04.jpg){: width="1200" height="900"}
+![bpy04.jpg]({{ '/images/bpy04.jpg' | relative_url }}){: width="1200" height="900"}
 
-![bpy05.jpg](/images/bpy05.jpg){: width="1200" height="900"}
+![bpy05.jpg]({{ '/images/bpy05.jpg' | relative_url }}){: width="1200" height="900"}
 
-![bpy06.jpg](/images/bpy06.jpg){: width="1200" height="900"}
+![bpy06.jpg]({{ '/images/bpy06.jpg' | relative_url }}){: width="1200" height="900"}
 
 The Malvern Link condition examines how the removal or relocation of the layover yard would reshape the western edge of the district. Within the Harvard Pre-Planning Framework, the deck edge is constrained by rail operations and private property setbacks, limiting public realm expansion.
 
