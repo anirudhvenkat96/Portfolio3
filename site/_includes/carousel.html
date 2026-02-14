@@ -1,0 +1,19 @@
+{% assign imgs = include.images | split: "," %}
+{% assign alts = include.alts | default: "" | split: "," %}
+
+<section class="c-carousel" aria-label="Project image carousel">
+  <button class="c-carousel__btn c-carousel__btn--left" type="button" aria-label="Previous image">‹</button>
+
+  <div class="c-carousel__viewport" tabindex="0">
+    <ul class="c-carousel__track">
+      {% for img in imgs %}
+        {% assign alt = alts[forloop.index0] | default: "" %}
+        <li class="c-carousel__slide">
+          <img src="{{ img | strip | relative_url }}" alt="{{ alt | strip }}">
+        </li>
+      {% endfor %}
+    </ul>
+  </div>
+
+  <button class="c-carousel__btn c-carousel__btn--right" type="button" aria-label="Next image">›</button>
+</section>
