@@ -13,7 +13,7 @@ The work focuses on site calibration, space programming, and volumetric test fit
 
 ### Site Context
 
-{% include carousel.html images="barrys02.jpg,barrys04.jpg,barrys05.jpg" alts="barrys02.jpg,barrys04.jpg,barrys05.jpg" %}
+{% include carousel.html images="/images/barrys02.jpg,/images/barrys04.jpg,/images/barrys05.jpg" alts="barrys02.jpg,barrys04.jpg,barrys05.jpg" %}
 
 The site occupies a triangular parcel framed by Western Avenue, North Harvard Street, and Academic Way. Positioned between Smith Field, the A.R.T., and emerging innovation uses, the location acts as both a campus threshold and a neighborhood hinge.
 
@@ -50,7 +50,7 @@ These interventions transform the parcel from a residual edge condition into a c
 
 ### Massing & Test Fit
 
-{% include carousel.html images="barrys08.jpg,barrys09.jpg" alts="barrys08.jpg,barrys09.jpg" %}
+{% include carousel.html images="/images/barrys08.jpg,/images/barrys09.jpg" alts="barrys08.jpg,barrys09.jpg" %}
 
 Multiple massing options test volumetric distribution, height transitions, and entry hierarchy. Each option maintains approximately 300,000–307,000 GSF while adjusting internal atrium placement, stepping strategies, and façade articulation.
 
