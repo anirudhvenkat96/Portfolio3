@@ -15,10 +15,9 @@ Study Area: **38 acres**
 
 ### Study Area & Parcel Definition
 
-{% include carousel.html
-  images="/images/adp02.jpg,/images/adp03.jpg"
-  alts="Study area map,Parcel and setback analysis"
-%}
+![Study Area]({{ '/images/adp02.jpg' | relative_url }})
+
+![Study parcel & Setbacks]({{ '/images/adp03.jpg' | relative_url }})
 
 The study area includes all non-institutional Harvard land west of Barry’s Corner. Actively programmed institutional properties were excluded from capacity calculations.
 
@@ -28,10 +27,7 @@ Setbacks defined in the Western Avenue Rezoning Study were mapped to determine b
 
 ### Zoning Sub-Categories & Height Limits
 
-{% include carousel.html
-  images="/images/adp04.jpg,/images/adp05.jpg"
-  alts="Zoning subcategories map,Height limits map"
-%}
+![Zoning & Height Limits]({{ '/images/adp04.jpg' | relative_url }})
 
 Zoning sub-districts range from FAR 2.0 to 4.25 with height limits between 35 and 185 feet.
 
@@ -43,10 +39,7 @@ The regulatory framework establishes theoretical maximum development envelopes p
 
 ### Base FAR vs Incentive FAR
 
-{% include carousel.html
-  images="/images/adp06.jpg"
-  alts="Base FAR vs Incentive FAR comparison"
-%}
+![FAR Comparision]({{ '/images/adp05.jpg' | relative_url }})
 
 Base FAR and high-incentive FAR scenarios were modeled to quantify potential gains from maximizing incentive participation.
 
@@ -56,10 +49,7 @@ Incentive utilization significantly increases development yield across multiple 
 
 ### Lease Expiration & Viable PDAs
 
-{% include carousel.html
-  images="/images/adp07.jpg,/images/adp08.jpg"
-  alts="Lease expiration map,Viable PDA grouping"
-%}
+![Leases & PDAs]({{ '/images/adp06.jpg' | relative_url }})
 
 Lease expiration timelines define when parcels can realistically enter redevelopment cycles.
 
@@ -72,8 +62,8 @@ This phase integrates regulatory capacity with temporal feasibility.
 ### Hypothetical Development Potential
 
 {% include carousel.html
-  images="/images/adp09.jpg,/images/adp10.jpg"
-  alts="GFA comparison chart,Development potential over time"
+  images="/images/adp07.jpg,/images/adp08.jpg,/images/adp09.jpg"
+  alts="GFA comparison chart,Development potential over time,Tabulation"
 %}
 
 Assuming maximum use of incentive FAR:
