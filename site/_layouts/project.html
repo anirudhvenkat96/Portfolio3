@@ -6,7 +6,7 @@ layout: default
 
   {% bookshop page-heading title=page.title description=page.subtitle %}
 
-  {% if page.image %}
+  {% if page.image and page.hide_hero != true %}
     {% bookshop page-image image=page.image image_alt=page.title %}
   {% endif %}
 

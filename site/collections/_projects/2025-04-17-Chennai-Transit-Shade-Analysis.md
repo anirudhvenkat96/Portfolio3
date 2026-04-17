@@ -2,6 +2,8 @@
 date: 2025-04-17 00:00:00 +0000
 title: Chennai Transit Shade Analysis
 subtitle: Remote Sensing, Urban Equity, Interactive Mapping, Heat Resilience
+image: /images/chennai01.jpg
+hide_hero: true
 ---
 
 <iframe
