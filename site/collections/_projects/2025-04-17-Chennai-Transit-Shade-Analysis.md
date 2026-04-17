@@ -28,18 +28,31 @@ The range across individual stops is stark. **Anna University** is the shadiest 
 
 ---
 
-### Methodology
+### How It Works
 
-Sentinel-2 NDVI satellite imagery was sourced from Google Earth Engine (2023) and used to classify vegetated surfaces across the city using a threshold of 0.3. Street networks within 600m of each transit stop were extracted using OSMnx, isolating only the walkable segments reachable on foot. Canopy coverage was then sampled directly along each street segment using rasterstats — not as a circular buffer, but as a network-based analysis that counts only canopy directly overhead of walkable streets. This produces a shade score that reflects the actual pedestrian experience of walking to transit, rather than a generalised measure of neighbourhood greenery.
+**Data Collection**
+- Sentinel-2 multispectral satellite imagery acquired via Google Earth Engine, filtered to January–April 2023 (dry season) to minimise cloud cover
+- Median composite of all cloud-free images (<5% cloud cover) used to produce a single clean raster covering Chennai
+- NDVI (Normalised Difference Vegetation Index) calculated from near-infrared and red bands — values range from -1 (water/built) to +1 (dense vegetation)
+- Transit stop locations collected from three sources: OpenStreetMap via Overpass API (bus stops), OpenCity GCC portal (MRTS), and OpenStreetMap (Metro) — cleaned and deduplicated before analysis
 
----
+**Network-Based Shade Analysis**
+- For each of 1,170 transit stops, the walkable street network within 600m was downloaded using OSMnx — this captures only streets actually reachable on foot, not a simple radius
+- Each street segment was buffered by 8 metres to approximate the canopy overhead a pedestrian would experience
+- Mean NDVI was sampled along each buffered segment using rasterstats — segments with mean NDVI above 0.3 were classified as shaded, below 0.3 as unshaded
+- Shade score = percentage of street segments within the 600m walking network that have canopy coverage
 
-### Data Sources
+**Why Network-Based Analysis Matters**
+- A simple radius approach would count trees inside fenced parks or behind walls — greenery that provides no shade to pedestrians
+- By following the actual street network, only canopy directly overhead of walkable routes is counted
+- This produces a more accurate measure of the lived experience of walking to transit in Chennai's climate
 
-- Sentinel-2 satellite imagery via Google Earth Engine (2023)
-- OpenStreetMap bus stop locations via Overpass API
-- Chennai Metro and MRTS station data via OpenCity
-- NDVI threshold: 0.3 (vegetation vs urban surface)
+**Tools and Stack**
+- Google Earth Engine — satellite imagery and NDVI computation
+- Python (OSMnx, Rasterio, Rasterstats, GeoPandas) — network analysis and canopy sampling
+- Mapbox GL JS — interactive web map
+- GDELT BigQuery — supplementary flood event analysis
+- Deployed on Vercel, version controlled on GitHub
 
 ---
 
