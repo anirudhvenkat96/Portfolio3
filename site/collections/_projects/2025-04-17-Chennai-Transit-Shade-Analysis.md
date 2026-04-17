@@ -2,16 +2,21 @@
 date: 2025-04-17 00:00:00 +0000
 title: Chennai Transit Shade Analysis
 subtitle: Remote Sensing, Urban Equity, Interactive Mapping, Heat Resilience
-image: /images/chennai01.jpg
+---
+
+<iframe
+  src="https://chennai-shade-transit-analysis.vercel.app"
+  width="100%"
+  height="700"
+  style="display:block; border: none; margin: 0 0 2rem 0;"
+  title="Chennai Transit Shade Analysis">
+</iframe>
+
+*Hover over any transit stop to see the walkable street network coloured by tree canopy coverage*
+
 ---
 
 Chennai's transit network serves millions of daily commuters, yet the walkability of streets connecting people to bus, metro, and MRTS stops varies dramatically across the city. This project maps tree canopy coverage along the actual walking networks surrounding 1,170 transit stops — asking a simple equity question: who gets to walk to transit in the shade?
-
----
-
-### Methodology
-
-Sentinel-2 NDVI satellite imagery was sourced from Google Earth Engine (2023) and used to classify vegetated surfaces across the city using a threshold of 0.3. Street networks within 600m of each transit stop were extracted using OSMnx, isolating only the walkable segments reachable on foot. Canopy coverage was then sampled directly along each street segment using rasterstats — not as a circular buffer, but as a network-based analysis that counts only canopy directly overhead of walkable streets. This produces a shade score that reflects the actual pedestrian experience of walking to transit, rather than a generalised measure of neighbourhood greenery.
 
 ---
 
@@ -23,17 +28,9 @@ The range across individual stops is stark. **Anna University** is the shadiest 
 
 ---
 
-### Interactive Map
+### Methodology
 
-<iframe
-  src="https://chennai-shade-transit-analysis.vercel.app"
-  width="100%"
-  height="600"
-  style="border: none;"
-  title="Chennai Transit Shade Analysis">
-</iframe>
-
-*Hover over any transit stop to see the walkable street network coloured by tree canopy coverage*
+Sentinel-2 NDVI satellite imagery was sourced from Google Earth Engine (2023) and used to classify vegetated surfaces across the city using a threshold of 0.3. Street networks within 600m of each transit stop were extracted using OSMnx, isolating only the walkable segments reachable on foot. Canopy coverage was then sampled directly along each street segment using rasterstats — not as a circular buffer, but as a network-based analysis that counts only canopy directly overhead of walkable streets. This produces a shade score that reflects the actual pedestrian experience of walking to transit, rather than a generalised measure of neighbourhood greenery.
 
 ---
 
