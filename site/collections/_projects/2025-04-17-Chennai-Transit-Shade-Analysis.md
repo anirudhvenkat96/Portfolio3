@@ -8,9 +8,7 @@ hide_hero: true
 
 <iframe
   src="https://chennai-shade-transit-analysis.vercel.app"
-  width="100%"
-  height="700"
-  style="display:block; border: none; margin: 0 0 2rem 0;"
+  style="width:100vw; height:80vh; border:none; display:block; margin-left:calc(-50vw + 50%); margin-bottom:2rem;"
   title="Chennai Transit Shade Analysis">
 </iframe>
 
