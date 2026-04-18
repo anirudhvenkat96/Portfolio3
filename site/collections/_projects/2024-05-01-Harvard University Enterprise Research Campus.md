@@ -3,6 +3,7 @@ date: 2024-05-01 05:20:35 +0300
 title: Harvard University Enterprise Research Campus
 subtitle: Long Term Planning, Development Analysis, Test Fits
 image: /images/erc (1).jpg
+category: professional
 ---
 
 The Harvard University Enterprise Research Campus (ERC) represents a long-term transformation of underutilized land in Allston into a mixed-use district that integrates research, residential life, institutional expansion, and a robust public realm. This study evaluated interim and long-range development scenarios, testing program capacity, parcel sequencing, and edge conditions to ensure the campus evolves coherently over time.

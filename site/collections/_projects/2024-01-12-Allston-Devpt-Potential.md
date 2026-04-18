@@ -3,6 +3,7 @@ date: 2024-06-01 09:00:00 -0500
 title: Allston Development Potential
 subtitle: Hypothetical Capacity Modeling – West of Barry’s Corner
 image: /images/adp01.jpg
+category: professional
 ---
 
 The Allston Development Potential Study evaluates hypothetical redevelopment capacity for Harvard-owned, non-institutional parcels west of Barry’s Corner in Boston. 

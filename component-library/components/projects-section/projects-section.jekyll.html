@@ -16,7 +16,13 @@
           </div>
 
           {% if include.show_projects %}
-          <div class="row">
+          <div class="projects-filter">
+            <button class="projects-filter__btn projects-filter__btn--active" data-filter="all">View All</button>
+            <button class="projects-filter__btn" data-filter="professional">Professional Work</button>
+            <button class="projects-filter__btn" data-filter="personal">Personal Projects</button>
+          </div>
+
+          <div class="row" id="projects-grid">
             {% assign sorted_projects = site.projects | sort: "date" | reverse %}
             {% for project in sorted_projects %}
               {% if forloop.index <= 6 %}
@@ -24,6 +30,31 @@
               {% endif %}
             {% endfor %}
           </div>
+
+          <script>
+            (function () {
+              var btns = document.querySelectorAll('.projects-filter__btn');
+              var grid = document.getElementById('projects-grid');
+
+              btns.forEach(function (btn) {
+                btn.addEventListener('click', function () {
+                  var filter = btn.getAttribute('data-filter');
+
+                  btns.forEach(function (b) { b.classList.remove('projects-filter__btn--active'); });
+                  btn.classList.add('projects-filter__btn--active');
+
+                  var cards = grid.querySelectorAll('[data-category]');
+                  cards.forEach(function (card) {
+                    if (filter === 'all' || card.getAttribute('data-category') === filter) {
+                      card.style.display = '';
+                    } else {
+                      card.style.display = 'none';
+                    }
+                  });
+                });
+              });
+            })();
+          </script>
           {% endif %}
 
         </div>

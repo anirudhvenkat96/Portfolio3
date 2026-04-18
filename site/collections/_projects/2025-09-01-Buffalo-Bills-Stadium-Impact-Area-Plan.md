@@ -3,6 +3,7 @@ date: 2025-09-01 05:20:35 +0300
 title: Buffalo Bills Stadium Impact Area Plan
 subtitle: Zoning Reform, Comprehensive Planning, Public Engagement
 image: /images/hamburg01.jpg
+category: professional
 ---
 
 The Stadium Economic Impact Area Plan positions the district as a complete, mixed-use neighborhood that extends beyond the game-day experience. Rather than a single-use entertainment zone, the framework supports a walkable urban environment that integrates housing, retail, recreation, and open space within a coherent public realm structure.

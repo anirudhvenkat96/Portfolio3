@@ -3,6 +3,7 @@ date: 2024-04-01 05:20:35 +0300
 title: Beacon Park Yards
 subtitle: Highway Replacement, Long term Planning, Comprehensive Master Plans, Visualization, Physical Modeling
 image: /images/bpy01.jpg
+category: professional
 ---
 
 Beacon Park Yards explores the long-term transformation of rail and highway infrastructure in Allston into a connected, development-ready urban district. The study focuses on the potential decking of I-90 to repair historic neighborhood divisions and enable new mixed-use growth tied to West Station.

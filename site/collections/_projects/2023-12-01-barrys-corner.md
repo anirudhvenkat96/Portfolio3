@@ -3,6 +3,7 @@ date: 2023-12-10 07:30:35 +0300
 title: Barrys corner Programming
 subtitle: Programming, Test Fits
 image: /images/barrys01.jpg
+category: personal
 ---
 
 Barry’s Corner sits at a critical junction between Harvard’s expanding Allston campus and an established mixed-use neighborhood along Western Avenue. This study develops planning principles and programmatic strategies to guide a future gateway building that reinforces institutional identity while strengthening retail and public life at the street.
