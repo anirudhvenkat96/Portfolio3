@@ -3,7 +3,7 @@ date: 2025-04-18 00:00:00 +0000
 title: Chennai Heat Island & Heat Equity Atlas
 subtitle: Remote Sensing, Urban Heat Islands, Environmental Justice, Spatial Analysis
 image: /images/chennai-heat-atlas.jpg
-category: personal
+category: chennai
 ---
 
 Chennai's urban heat crisis is unevenly distributed — but until now, no one had mapped exactly where extreme heat concentrates, or who bears the greatest burden. This project builds a complete heat equity atlas for Chennai's 155 municipal wards, combining satellite remote sensing, machine learning, Census 2011 socioeconomic data, and an interactive web dashboard.
