@@ -2,65 +2,59 @@
 date: 2025-04-18 00:00:00 +0000
 title: Chennai Heat Island & Heat Equity Atlas
 subtitle: Remote Sensing, Urban Heat Islands, Environmental Justice, Spatial Analysis
-image: /images/chennai-heat-atlas.jpg
+image: /images/chennai01.jpg
 category: chennai
+hide_hero: true
 ---
 
-Chennai's urban heat crisis is unevenly distributed — but until now, no one had mapped exactly where extreme heat concentrates, or who bears the greatest burden. This project builds a complete heat equity atlas for Chennai's 155 municipal wards, combining satellite remote sensing, machine learning, Census 2011 socioeconomic data, and an interactive web dashboard.
+<iframe
+  src="https://chennai-shade-transit-analysis.vercel.app"
+  style="width:100vw; height:80vh; border:none; display:block; margin-left:calc(-50vw + 50%); margin-bottom:2rem;"
+  title="Chennai Transit Shade Analysis">
+</iframe>
 
----
-
-### Land Surface Temperature from Landsat 8
-
-Land Surface Temperature (LST) was derived from Landsat 8 Collection 2 thermal infrared imagery (Band 10) for four years — 2015, 2018, 2021, and 2023 — using Google Earth Engine. Images were filtered to the March–July pre-monsoon season, when Chennai's heat stress peaks. Thermal radiance was converted to LST in Celsius using the standard radiometric calibration formula, and a median composite was computed for each year to suppress cloud noise.
-
-LST values across the city range from approximately 21°C in water bodies and dense vegetation to over 55°C on exposed rooftops and industrial surfaces — a 34-degree range within a single urban boundary.
-
----
-
-### K-Means Clustering of Urban Heat Zones
-
-Raw LST values were clustered into six thermally distinct urban heat zones using K-Means (k=6, n_init=10). Clusters were sorted by mean temperature and assigned interpretive labels:
-
-- **Water / Vegetation** — lowest temperatures, riparian corridors and parks
-- **Cool Urban** — well-canopied residential streets
-- **Moderate** — mixed residential fabric
-- **Warm Urban** — dense commercial and residential mid-city
-- **Hot Urban** — industrial zones and exposed surfaces
-- **Extreme Hotspot** — rooftop-heavy areas with minimal vegetation
-
-Each cluster was vectorized into a GeoJSON polygon layer for use in the interactive dashboard.
+*Hover over any transit stop to see the walkable street network coloured by tree canopy coverage*
 
 ---
 
-### Heat Equity Analysis: Census 2011 × LST
-
-Ward-level LST statistics (mean, max, 90th percentile) were computed using zonal statistics against the 155-ward boundary layer. These were joined to Census 2011 data including Scheduled Caste (SC) population share, Scheduled Tribe (ST) share, total households, and a deprivation index derived from households with no listed assets.
-
-OLS regression and correlation analysis reveal that wards with higher SC population shares and higher asset deprivation scores are disproportionately concentrated in hotter thermal zones — a pattern consistent with historical land-use exclusion and underinvestment in green infrastructure.
-
-A composite **Heat Burden Index** was constructed:
-
-> HBI = 0.4 × LST\_norm + 0.3 × Deprivation\_norm + 0.2 × SC\_share\_norm + 0.1 × (1 − NDVI\_norm)
-
-This index identifies wards where thermal risk and social vulnerability reinforce each other — the highest-priority targets for shade tree planting, cool roof programs, and heat emergency planning.
+Chennai's transit network serves millions of daily commuters, yet the walkability of streets connecting people to bus, metro, and MRTS stops varies dramatically across the city. This project maps tree canopy coverage along the actual walking networks surrounding 1,170 transit stops — asking a simple equity question: who gets to walk to transit in the shade?
 
 ---
 
-### Live Interactive Dashboard
+### Key Findings
 
-The analysis is published as a live Mapbox GL JS dashboard built in Next.js, allowing users to explore UHI cluster zones, ward-level Heat Burden Index, and equity indicators across the city.
+Across 1,170 stops, the city-wide average shade score is **26.8%**. Coverage varies significantly by transit mode: Metro stops average **21.8%**, MRTS stops **25.8%**, and bus stops **27.7%** — suggesting that newer rapid transit infrastructure has been sited in less-canopied corridors, while the legacy bus network is more often embedded in older, tree-lined streets.
 
-**[Explore the live dashboard →](https://chennai-heat-atlas.vercel.app)**
-
-Layer toggles allow switching between the K-Means UHI cluster map and the Heat Burden Index choropleth. Hovering any ward shows its LST mean, SC share, deprivation index, and composite HBI score.
+The range across individual stops is stark. **Anna University** is the shadiest stop at **81.1%** coverage. **Redhills Market** is the least shaded at **1.1%**. Of the 1,170 stops analysed, **227 fall below 10% shade coverage** — a threshold that represents meaningful heat exposure for pedestrians — while only **9 stops exceed 75%**.
 
 ---
 
-### Methods & Tools
+### How It Works
 
-- **Google Earth Engine** — Landsat 8 image collection, LST computation, NDVI compositing
-- **Python** — rasterio, scikit-learn (K-Means), rasterstats, geopandas, statsmodels
-- **Pandas / Census processing** — Ward-level aggregation of Census 2011 HH-14 housing tables
-- **Next.js + Mapbox GL JS** — interactive web dashboard, deployed on Vercel
-- **Data sources** — Landsat 8 C2 L2 (USGS/NASA), Census of India 2011, Chennai Corporation ward boundaries
+**Data Collection**
+- Sentinel-2 multispectral satellite imagery acquired via Google Earth Engine, filtered to January–April 2023 (dry season) to minimise cloud cover
+- Median composite of all cloud-free images (<5% cloud cover) used to produce a single clean raster covering Chennai
+- NDVI (Normalised Difference Vegetation Index) calculated from near-infrared and red bands — values range from -1 (water/built) to +1 (dense vegetation)
+- Transit stop locations collected from three sources: OpenStreetMap via Overpass API (bus stops), OpenCity GCC portal (MRTS), and OpenStreetMap (Metro) — cleaned and deduplicated before analysis
+
+**Network-Based Shade Analysis**
+- For each of 1,170 transit stops, the walkable street network within 600m was downloaded using OSMnx — this captures only streets actually reachable on foot, not a simple radius
+- Each street segment was buffered by 8 metres to approximate the canopy overhead a pedestrian would experience
+- Mean NDVI was sampled along each buffered segment using rasterstats — segments with mean NDVI above 0.3 were classified as shaded, below 0.3 as unshaded
+- Shade score = percentage of street segments within the 600m walking network that have canopy coverage
+
+**Why Network-Based Analysis Matters**
+- A simple radius approach would count trees inside fenced parks or behind walls — greenery that provides no shade to pedestrians
+- By following the actual street network, only canopy directly overhead of walkable routes is counted
+- This produces a more accurate measure of the lived experience of walking to transit in Chennai's climate
+
+**Tools and Stack**
+- Google Earth Engine — satellite imagery and NDVI computation
+- Python (OSMnx, Rasterio, Rasterstats, GeoPandas) — network analysis and canopy sampling
+- Mapbox GL JS — interactive web map
+- GDELT BigQuery — supplementary flood event analysis
+- Deployed on Vercel, version controlled on GitHub
+
+---
+
+[View the full code and methodology on GitHub](https://github.com/anirudhvenkat96/chennai-shade-transit-analysis)
