@@ -17,8 +17,7 @@
 
           {% if include.show_projects %}
           <div class="projects-filter">
-            <button class="projects-filter__btn projects-filter__btn--active" data-filter="all">View All</button>
-            <button class="projects-filter__btn" data-filter="professional">Professional Work</button>
+            <button class="projects-filter__btn projects-filter__btn--active" data-filter="professional">Professional Work</button>
             <button class="projects-filter__btn" data-filter="personal">Personal Projects</button>
           </div>
 
@@ -36,21 +35,21 @@
               var btns = document.querySelectorAll('.projects-filter__btn');
               var grid = document.getElementById('projects-grid');
 
+              function applyFilter(filter) {
+                var cards = grid.querySelectorAll('[data-category]');
+                cards.forEach(function (card) {
+                  card.style.display = card.getAttribute('data-category') === filter ? '' : 'none';
+                });
+              }
+
+              // Apply default filter on load
+              applyFilter('professional');
+
               btns.forEach(function (btn) {
                 btn.addEventListener('click', function () {
-                  var filter = btn.getAttribute('data-filter');
-
                   btns.forEach(function (b) { b.classList.remove('projects-filter__btn--active'); });
                   btn.classList.add('projects-filter__btn--active');
-
-                  var cards = grid.querySelectorAll('[data-category]');
-                  cards.forEach(function (card) {
-                    if (filter === 'all' || card.getAttribute('data-category') === filter) {
-                      card.style.display = '';
-                    } else {
-                      card.style.display = 'none';
-                    }
-                  });
+                  applyFilter(btn.getAttribute('data-filter'));
                 });
               });
             })();
