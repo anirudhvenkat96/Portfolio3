@@ -24,9 +24,7 @@
           <div class="row" id="projects-grid">
             {% assign sorted_projects = site.projects | sort: "date" | reverse %}
             {% for project in sorted_projects %}
-              {% if forloop.index <= 6 %}
                 {% bookshop project-card project=project %}
-              {% endif %}
             {% endfor %}
           </div>
 
