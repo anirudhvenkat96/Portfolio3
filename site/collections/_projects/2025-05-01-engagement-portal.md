@@ -7,7 +7,7 @@ category: civic-tech
 hide_hero: true
 ---
 
-Public engagement in planning is broken. Planners arrive at community sessions with paper sign-in sheets, printed surveys, and no way to collect spatial opinions from residents in real time. Data gets lost, transcribed incorrectly, or never analyzed at all. This portal is a purpose-built digital tool that replaces that entire workflow — from attendee registration to map-based community input — and puts structured, exportable data in the planner's hands by the end of the session.
+Public engagement in planning practices takes time and effort to plan. Especially in small and medium sized firms, time is money and finding efficient ways to gather public opinion is invaluable. I wanted to find ways to eliminate the boring and costly parts of public engagement efforts such as logging attendee details, using third party survey apps, consolidating all kinds of data into a digital format, etc. Often, Planners arrive at community sessions with paper sign-in sheets, printed or emailed surveys, and no way to collect digitized spatial opinions from residents in real time. Data gets lost, transcribed incorrectly, or never analyzed at all. This portal is a purpose-built digital tool that replaces that entire workflow from attendee registration to map-based community input, putting structured, exportable data in the planner's hands by the end of the session.
 
 ---
 
@@ -55,7 +55,7 @@ When community members arrive at the venue, they are handed a tablet or laptop w
 
 ![Public survey form showing a multiple choice question](/images/engagement-portal-04.jpg)
 
-The planner builds a survey in the admin panel and shares a link with attendees. This survey can also be sent to community members who could not attend in person. The public form supports short text, long text, multiple choice, and rating scale questions. Responses are stored per session and exportable as CSV.
+The planner builds a survey in the admin panel and shares a link with attendees. This survey can also be emailed to community members who could not attend in person. The public form supports short text, long text, multiple choice, and rating scale questions. Responses are stored per session and exportable as CSV.
 
 ---
 
@@ -63,7 +63,7 @@ The planner builds a survey in the admin panel and shares a link with attendees.
 
 ![Map activity interface showing a pin placed on a street in Chennai](/images/engagement-portal-05.jpg)
 
-The most powerful feature of the portal is the activity interface — a full-screen map where attendees tap to place a pin indicating a spatial preference. In this proof of concept, attendees mark where they would like to see a bus stop in their neighborhood. Every pin is saved with coordinates and linked to the attendee's record.
+The most powerful feature of the portal is the activity interface which is a full-screen map where attendees tap to place a pin indicating a spatial preference. In this proof of concept, attendees mark where they would like to see a bus stop in their neighborhood. Every pin is saved with coordinates and linked to the attendee's record.
 
 ---
 
