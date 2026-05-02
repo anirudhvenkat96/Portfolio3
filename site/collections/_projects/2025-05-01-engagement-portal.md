@@ -3,7 +3,7 @@ date: 2025-05-01 00:00:00 +0000
 title: Public Engagement Portal
 subtitle: Civic Tech, Full-Stack Development, Urban Planning, Public Participation
 image: /images/engagement-portal-hero.png
-category: civic-tech
+category: professional
 hide_hero: true
 ---
 
