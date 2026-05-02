@@ -11,7 +11,7 @@ Public engagement in planning is broken. Planners arrive at community sessions w
 
 ---
 
-### Who a session comes together
+### How a session comes together
 
 ![Admin dashboard showing project and session management](/images/engagement-portal-01.jpg)
 
