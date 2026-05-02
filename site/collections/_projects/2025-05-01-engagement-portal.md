@@ -13,7 +13,31 @@ Public engagement in planning is broken. Planners arrive at community sessions w
 
 ### How a session comes together
 
-![Admin dashboard showing project and session management](/images/engagement-portal-01.jpg)
+<div style="position:relative; width:100%; overflow:hidden; border-radius:8px; background:#f3f4f6;">
+  <div id="carousel-track" style="display:flex; transition:transform 0.4s ease;">
+    <img src="/images/engagement-portal-01.jpg" alt="Admin projects dashboard" style="min-width:100%; width:100%; object-fit:cover; display:block;">
+    <img src="/images/engagement-portal-02.jpg" alt="Admin sessions page" style="min-width:100%; width:100%; object-fit:cover; display:block;">
+  </div>
+  <button onclick="moveCarousel(-1)" style="position:absolute; left:12px; top:50%; transform:translateY(-50%); background:rgba(255,255,255,0.85); border:none; border-radius:50%; width:36px; height:36px; font-size:18px; cursor:pointer; line-height:1;">‹</button>
+  <button onclick="moveCarousel(1)" style="position:absolute; right:12px; top:50%; transform:translateY(-50%); background:rgba(255,255,255,0.85); border:none; border-radius:50%; width:36px; height:36px; font-size:18px; cursor:pointer; line-height:1;">›</button>
+  <div style="position:absolute; bottom:10px; width:100%; display:flex; justify-content:center; gap:6px;">
+    <span id="dot-0" style="width:8px; height:8px; border-radius:50%; background:#1d4ed8; display:inline-block;"></span>
+    <span id="dot-1" style="width:8px; height:8px; border-radius:50%; background:#cbd5e1; display:inline-block;"></span>
+  </div>
+</div>
+
+<script>
+var _ci = 0;
+var _ct = 2;
+function moveCarousel(dir) {
+  _ci = (_ci + dir + _ct) % _ct;
+  document.getElementById('carousel-track').style.transform = 'translateX(-' + (_ci * 100) + '%)';
+  for (var i = 0; i < _ct; i++) {
+    var dot = document.getElementById('dot-' + i);
+    if (dot) dot.style.background = i === _ci ? '#1d4ed8' : '#cbd5e1';
+  }
+}
+</script>
 
 Before an engagement day, the planner creates a project and sets up a session in the admin dashboard. Each session lives under a project, can hold multiple engagement activities, and has its own photo folder for documentation.
 
@@ -21,7 +45,7 @@ Before an engagement day, the planner creates a project and sets up a session in
 
 ### Attendees check in on arrival
 
-![Public-facing kiosk check-in form on a tablet](/images/engagement-portal-02.jpg)
+![Public-facing kiosk check-in form on a tablet](/images/engagement-portal-03.jpg)
 
 When community members arrive at the venue, they are handed a tablet or laptop with the check-in screen open. They enter their name, email, address, and neighborhood affiliation. Every submission is automatically linked to the session — no paper, no manual transcription.
 
@@ -29,7 +53,7 @@ When community members arrive at the venue, they are handed a tablet or laptop w
 
 ### Surveys collect structured opinions
 
-![Public survey form showing a multiple choice question](/images/engagement-portal-03.jpg)
+![Public survey form showing a multiple choice question](/images/engagement-portal-04.jpg)
 
 The planner builds a survey in the admin panel and shares a link with attendees. The public form supports short text, long text, multiple choice, and rating scale questions. Responses are stored per session and exportable as CSV.
 
@@ -37,7 +61,7 @@ The planner builds a survey in the admin panel and shares a link with attendees.
 
 ### Communities place their opinions on the map
 
-![Map activity interface showing a pin placed on a street in Chennai](/images/engagement-portal-04.jpg)
+![Map activity interface showing a pin placed on a street in Chennai](/images/engagement-portal-05.jpg)
 
 The most powerful feature of the portal is the activity interface — a full-screen map where attendees tap to place a pin indicating a spatial preference. In this proof of concept, attendees mark where they would like to see a bus stop in their neighborhood. Every pin is saved with coordinates and linked to the attendee's record.
 
@@ -45,7 +69,7 @@ The most powerful feature of the portal is the activity interface — a full-scr
 
 ### Planners review everything in one place
 
-![Admin activity results page showing clustered pins on a map](/images/engagement-portal-05.jpg)
+![Admin activity results page showing clustered pins on a map](/images/engagement-portal-06.jpg)
 
 After the session, the planner opens the admin panel to find a complete record — attendee list, survey responses, and all map submissions visualized as clustered markers. Every dataset is exportable. Photos uploaded during the session are stored in a dedicated folder.
 
