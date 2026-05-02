@@ -13,7 +13,7 @@ Public engagement in planning is broken. Planners arrive at community sessions w
 
 ### Who a session comes together
 
-![Admin dashboard showing project and session management](/images/01-ADMIN PAGE.jpg)
+![Admin dashboard showing project and session management](/images/engagement-portal-01.jpg)
 
 Before an engagement day, the planner creates a project and sets up a session in the admin dashboard. Each session lives under a project, can hold multiple engagement activities, and has its own photo folder for documentation.
 
@@ -21,7 +21,7 @@ Before an engagement day, the planner creates a project and sets up a session in
 
 ### Attendees check in on arrival
 
-![Public-facing kiosk check-in form on a tablet](/images/03-PUBLIC CHECK IN.jpg)
+![Public-facing kiosk check-in form on a tablet](/images/engagement-portal-02.jpg)
 
 When community members arrive at the venue, they are handed a tablet or laptop with the check-in screen open. They enter their name, email, address, and neighborhood affiliation. Every submission is automatically linked to the session — no paper, no manual transcription.
 
@@ -29,7 +29,7 @@ When community members arrive at the venue, they are handed a tablet or laptop w
 
 ### Surveys collect structured opinions
 
-![Public survey form showing a multiple choice question](/images/02-SESSIONS PAGE.jpg)
+![Public survey form showing a multiple choice question](/images/engagement-portal-03.jpg)
 
 The planner builds a survey in the admin panel and shares a link with attendees. The public form supports short text, long text, multiple choice, and rating scale questions. Responses are stored per session and exportable as CSV.
 
