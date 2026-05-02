@@ -55,7 +55,7 @@ When community members arrive at the venue, they are handed a tablet or laptop w
 
 ![Public survey form showing a multiple choice question](/images/engagement-portal-04.jpg)
 
-The planner builds a survey in the admin panel and shares a link with attendees. The public form supports short text, long text, multiple choice, and rating scale questions. Responses are stored per session and exportable as CSV.
+The planner builds a survey in the admin panel and shares a link with attendees. This survey can also be sent to community members who could not attend in person. The public form supports short text, long text, multiple choice, and rating scale questions. Responses are stored per session and exportable as CSV.
 
 ---
 
