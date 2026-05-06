@@ -13,6 +13,14 @@ hide_hero: true
   title="Tamil Nadu 2026 Election Dashboard">
 </iframe>
 
+<div style="text-align:right; margin-top:-1.5rem; margin-bottom:1rem;">
+  <a href="https://tn-election-2026-navy.vercel.app" target="_blank" 
+     style="font-size:0.85rem; color:#666; text-decoration:none; border:1px solid #ccc; 
+            padding:4px 10px; border-radius:4px;">
+    ↗ Open full screen
+  </a>
+</div>
+
 *Click any constituency on the map to explore results, candidates, and swing analysis across three elections*
 
 ---
