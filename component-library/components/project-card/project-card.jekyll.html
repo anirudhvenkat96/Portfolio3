@@ -1,5 +1,5 @@
 {% assign c = "c-project-card" %}
-<article class="{{ c }} col col-4 col-d-6 col-t-12" data-category="{{ include.project.category | default: 'personal' }}">
+<article class="{{ c }} col col-4 col-d-6 col-t-12" data-category="{{ include.project.category | default: 'professional' }}">
   <div class="{{ c }}__content">
     <a href="{{ include.project.url | relative_url }}" class="{{ c }}__image">
       <img loading="lazy" src="{{ include.project.image | relative_url }}" alt="{{ include.project.title }}">

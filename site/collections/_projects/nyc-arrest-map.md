@@ -3,7 +3,7 @@ date: 2026-05-28 00:00:00 +0000
 title: NYC Arrests Visualizer
 subtitle: Civic Tech, Data Visualization, Interactive Mapping, Python, FastAPI
 image: /images/nyc-arrest-map.jpg
-category: professional
+category: geospatial
 hide_hero: true
 ---
 

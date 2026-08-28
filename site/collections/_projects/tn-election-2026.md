@@ -3,7 +3,7 @@ date: 2026-05-05 00:00:00 +0000
 title: Tamil Nadu 2026 Election Dashboard
 subtitle: Election Analysis, Interactive Mapping, Data Journalism, AI-Assisted Research
 image: /images/tn-election-01.jpg
-category: chennai
+category: geospatial
 hide_hero: true
 ---
 

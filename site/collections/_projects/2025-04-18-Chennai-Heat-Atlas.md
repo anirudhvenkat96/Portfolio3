@@ -3,7 +3,7 @@ date: 2025-04-18 00:00:00 +0000
 title: Chennai Heat Island & Heat Equity Atlas
 subtitle: Remote Sensing, Urban Heat Islands, Environmental Justice, Spatial Analysis
 image: /images/Heat-island-01.jpg
-category: chennai
+category: geospatial
 hide_hero: true
 ---
 
