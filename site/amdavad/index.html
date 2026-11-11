@@ -156,6 +156,9 @@ textarea{resize:vertical;min-height:84px;line-height:1.45}
 .rec b{font-weight:600;color:var(--ink)}
 .shared{display:inline-block;font-size:11.5px;font-weight:600;color:var(--indigo);background:#e7e9f6;border-radius:999px;padding:1px 8px;margin-left:6px;vertical-align:1px}
 
+.regionbtn{background:var(--paper);border:1px solid var(--line);border-radius:999px;padding:7px 12px;font:600 13px Inter,sans-serif;color:var(--indigo);cursor:pointer;box-shadow:var(--shadow)}
+.regionbtn:hover{background:#fff}
+
 /* leaderboard */
 .section-lbl{padding:14px 20px 4px;font-size:12px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
 .leader{display:flex;align-items:center;gap:12px;padding:12px 20px;cursor:pointer;transition:background .12s}
@@ -535,6 +538,7 @@ async function initBoard(){
     L.control.zoom({position:"bottomleft"}).addTo(bigMap);
     tiles().addTo(bigMap);
     layer = L.featureGroup().addTo(bigMap);
+    addRegionControl();
   }
   setTimeout(()=>bigMap.invalidateSize(),60);
   try{ items = await loadAll(); }catch(e){ $("count").textContent="Couldn't load the list right now."; }
@@ -710,7 +714,25 @@ function renderBoard(){
   if(ja && markers[ja]){ justAdded=null; setTimeout(()=>highlight(ja,true),300); }
   else fitAll();
 }
-function fitAll(){ if(layer.getLayers().length) bigMap.fitBounds(layer.getBounds().pad(0.2),{maxZoom:14}); }
+// Open on the city: fit to pins inside greater Ahmedabad, so day-trip pins
+// (Patan, Polo Forest…) don't shrink the city. "Show whole region" zooms out.
+const CITY = L.latLngBounds([[22.93,72.44],[23.13,72.68]]); // Ahmedabad proper (Thol, Nal Sarovar etc. fall outside)
+function fitAll(whole){
+  const all=layer.getLayers().map(m=>m.getLatLng()); if(!all.length) return;
+  const city=all.filter(ll=>CITY.contains(ll));
+  const pts=(whole||!city.length)?all:city;
+  bigMap.fitBounds(L.latLngBounds(pts).pad(0.15),{maxZoom:14});
+}
+function addRegionControl(){
+  const C=L.Control.extend({options:{position:"topright"},onAdd(){
+    const b=L.DomUtil.create("button","regionbtn"); b.type="button"; b.textContent="🗺️ Show whole region";
+    let wide=false;
+    L.DomEvent.disableClickPropagation(b);
+    b.onclick=()=>{ wide=!wide; fitAll(wide); b.textContent=wide?"🏙️ Back to the city":"🗺️ Show whole region"; };
+    return b;
+  }});
+  new C().addTo(bigMap);
+}
 
 function renderLeaders(){
   const {ranked, waiting} = leaderboard();
