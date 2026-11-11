@@ -151,6 +151,11 @@ textarea{resize:vertical;min-height:84px;line-height:1.45}
 .bigscore{flex:none;width:44px;text-align:center;font-family:Fraunces,serif;font-weight:700;font-size:22px;color:var(--saffron);line-height:1.1}
 .bigscore small{display:block;font-family:Inter,sans-serif;font-size:10.5px;font-weight:600;color:var(--muted)}
 
+.recs{margin-top:6px;display:flex;flex-direction:column;gap:4px}
+.rec{font-size:13.5px;color:#4a3d30;line-height:1.45;padding-left:10px;border-left:2px solid var(--line)}
+.rec b{font-weight:600;color:var(--ink)}
+.shared{display:inline-block;font-size:11.5px;font-weight:600;color:var(--indigo);background:#e7e9f6;border-radius:999px;padding:1px 8px;margin-left:6px;vertical-align:1px}
+
 /* leaderboard */
 .section-lbl{padding:14px 20px 4px;font-size:12px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
 .leader{display:flex;align-items:center;gap:12px;padding:12px 20px;cursor:pointer;transition:background .12s}
@@ -287,7 +292,7 @@ input[type=date],input[type=password]{width:100%;border:1.5px solid var(--line);
         <div class="tabs" id="tabs" role="tablist">
           <button class="tab on" data-tab="picks">All picks</button>
           <button class="tab" data-tab="rated">⭐ Top rated</button>
-          <button class="tab" data-tab="leaders">🏆 Leaderboard</button>
+          <button class="tab" data-tab="leaders">🏆 Leaders</button>
         </div>
         <p id="count">Loading recommendations…</p>
         <div class="chips" id="chips"></div>
@@ -523,7 +528,7 @@ $("submit").onclick = async ()=>{
 };
 
 /* ================= SCREEN 3 ================= */
-let bigMap, layer, items=[], filter="all", person=null, tab="picks", justAdded=null, markers={};
+let bigMap, layer, items=[], places=[], placeOf={}, filter="all", person=null, tab="picks", justAdded=null, markers={};
 async function initBoard(){
   if(!bigMap){
     bigMap = L.map("bigmap",{zoomControl:false}).setView(CENTER,12);
@@ -533,13 +538,57 @@ async function initBoard(){
   }
   setTimeout(()=>bigMap.invalidateSize(),60);
   try{ items = await loadAll(); }catch(e){ $("count").textContent="Couldn't load the list right now."; }
-  items.forEach(i=>{ i.rating = Number(i.rating)||0; });
-  items.sort((a,b)=>String(b.ts).localeCompare(String(a.ts)));
+  items.forEach(i=>{ i.rating = Number(i.rating)||0; i.lat=Number(i.lat); i.lng=Number(i.lng); });
+  buildPlaces();
   renderBoard();
 }
 
-/* ---------- small renderers ---------- */
+/* ---------- same place, different people ----------
+   Picks are merged into one place when they're within 15 m of each other,
+   or within 60 m and share a word in the name (or the same map address).
+   Everyone who recommended a place shares the credit for its rating. */
 const keyOf = n => String(n||"").trim().toLowerCase();
+const STOP = new Set("the and with from into near visit try walk food place good best ahmedabad amdavad cafe coffee restaurant".split(" "));
+function words(s){ return new Set(String(s||"").toLowerCase().replace(/[^a-z0-9ऀ-૿ ]+/g," ").split(/\s+/).filter(w=>w.length>=4 && !STOP.has(w)).map(w=>w.replace(/s$/,""))); }
+function metres(a,b){ const k=Math.PI/180, x=(b.lng-a.lng)*k*Math.cos((a.lat+b.lat)/2*k), y=(b.lat-a.lat)*k; return Math.sqrt(x*x+y*y)*6371000; }
+function firstSeg(s){ return String(s||"").split(",")[0].trim().toLowerCase(); }
+function samePlace(a,b){
+  if(isNaN(a.lat)||isNaN(b.lat)) return false;
+  const d=metres(a,b);
+  if(d<=15) return true;
+  if(d>60) return false;
+  const wa=words(a.title); if([...words(b.title)].some(w=>wa.has(w))) return true;
+  const sa=firstSeg(a.address); return !!sa && sa===firstSeg(b.address) && !/road|marg|taluka/.test(sa);
+}
+function buildPlaces(){
+  const sorted=[...items].sort((a,b)=>String(a.ts).localeCompare(String(b.ts)));
+  places=[]; placeOf={};
+  for(const i of sorted){
+    let p=places.find(p=>p.picks.some(q=>samePlace(q,i)));
+    if(!p){ p={id:i.id, picks:[]}; places.push(p); }
+    p.picks.push(i); placeOf[i.id]=p;
+  }
+  places.forEach(p=>{
+    const first=p.picks[0];
+    // the shortest title is usually the plain place name ("House of MG" over "House of MG heritage walk")
+    p.title=p.picks.map(x=>x.title).reduce((a,b)=>b.length<a.length?b:a);
+    Object.assign(p,{cat:first.cat, lat:first.lat, lng:first.lng, address:first.address});
+    const rated=p.picks.filter(x=>x.rating).sort((a,b)=>String(b.visited).localeCompare(String(a.visited)));
+    p.rating=rated.length?rated[0].rating:0; p.review=rated.length?rated[0].review:""; p.visited=rated.length?rated[0].visited:"";
+    p.rateRow=rated.length?rated[0].id:first.id;
+    const seen=new Map(); p.picks.forEach(x=>{ const k=keyOf(x.name); if(k && !seen.has(k)) seen.set(k,x.name.trim()); });
+    p.people=[...seen.keys()]; p.names=[...seen.values()];
+    p.ts=p.picks.map(x=>String(x.ts)).sort().pop();
+    p.mine=p.picks.some(x=>mine.has(x.id));
+    // one line per recommendation, without repeating identical double-submits
+    const recs=new Map(); p.picks.forEach(x=>{ const k=keyOf(x.name)+"|"+keyOf(x.title)+"|"+keyOf(x.notes); if(!recs.has(k)) recs.set(k,x); });
+    p.recs=[...recs.values()];
+  });
+  places.sort((a,b)=>b.ts.localeCompare(a.ts));
+}
+function joinNames(n){ return n.length<=1 ? (n[0]||"") : n.slice(0,-1).join(", ")+" & "+n[n.length-1]; }
+
+/* ---------- small renderers ---------- */
 function stars(n, size){
   const r=Math.round(n);
   return `<span class="stars"${size?` style="font-size:${size}px"`:""}>${"★".repeat(r)}<span class="off">${"★".repeat(5-r)}</span></span>`;
@@ -549,50 +598,55 @@ function fmtDate(v){
   const d=new Date(String(v).slice(0,10)+"T00:00");
   return isNaN(d) ? "" : d.toLocaleDateString("en-GB",{day:"numeric",month:"short",year:"numeric"});
 }
-function verdictHTML(i){
-  if(!i.rating) return "";
-  return `<div class="verdict"><div class="lbl">Anirudh's verdict ${stars(i.rating,13)}${i.visited?`<span class="when">${esc(fmtDate(i.visited))}</span>`:""}</div>${i.review?esc(i.review):"<i>No review yet.</i>"}</div>`;
+function verdictHTML(p){
+  if(!p.rating) return "";
+  return `<div class="verdict"><div class="lbl">Anirudh's verdict ${stars(p.rating,13)}${p.visited?`<span class="when">${esc(fmtDate(p.visited))}</span>`:""}</div>${p.review?esc(p.review):"<i>No review yet.</i>"}</div>`;
 }
-function adminButtons(i){
-  return `<button class="mini rate adm" data-rate="${esc(i.id)}">${i.rating?"✏️ Edit rating":"⭐ Rate"}</button><button class="mini warn adm" data-hide="${esc(i.id)}">Hide</button>`;
+function recsHTML(p){
+  if(p.recs.length===1) return p.recs[0].notes?`<div class="note">${esc(p.recs[0].notes)}</div>`:"";
+  return `<div class="recs">`+p.recs.map(x=>`<div class="rec"><b>${esc(x.name.trim())}</b>${keyOf(x.title)!==keyOf(p.title)?` · “${esc(x.title)}”`:""}${x.notes?`: ${esc(x.notes)}`:""}</div>`).join("")+`</div>`;
 }
-function itemHTML(i){
-  const c=CAT[i.cat]||CAT.gem;
+function adminButtons(p){
+  return `<button class="mini rate adm" data-rate="${esc(p.id)}">${p.rating?"✏️ Edit rating":"⭐ Rate"}</button><button class="mini warn adm" data-hide="${esc(p.id)}">Hide${p.picks.length>1?` (${p.picks.length})`:""}</button>`;
+}
+function itemHTML(p){
+  const c=CAT[p.cat]||CAT.gem;
   const lead = tab==="rated"
-    ? `<div class="bigscore">${i.rating}<small>/ 5</small></div>`
+    ? `<div class="bigscore">${p.rating}<small>/ 5</small></div>`
     : `<div class="badge" style="background:${c.color}1f">${c.emoji}</div>`;
-  return `<div class="item ${mine.has(i.id)?"mine":""}" data-id="${esc(i.id)}">
+  return `<div class="item ${p.mine?"mine":""}" data-id="${esc(p.id)}">
     ${lead}
     <div style="min-width:0;flex:1">
-      <h3>${esc(i.title)}${i.rating&&tab!=="rated"?`<span class="visited">✓ Visited</span>`:""}</h3>
-      <div class="who">${esc(i.name)} · ${esc(c.label)}</div>
-      ${i.notes?`<div class="note">${esc(i.notes)}</div>`:""}
-      ${verdictHTML(i)}
-      ${adminButtons(i)}
+      <h3>${esc(p.title)}${p.rating&&tab!=="rated"?`<span class="visited">✓ Visited</span>`:""}${p.people.length>1?`<span class="shared">👥 ${p.people.length}</span>`:""}</h3>
+      <div class="who">${esc(joinNames(p.names))} · ${esc(c.label)}</div>
+      ${recsHTML(p)}
+      ${verdictHTML(p)}
+      ${adminButtons(p)}
     </div>
   </div>`;
 }
-function popupHTML(i){
-  const c=CAT[i.cat]||CAT.gem;
-  return `<b>${esc(i.title)}</b><div class="pop-who">${c.emoji} ${esc(c.label)} · from ${esc(i.name)}</div>`
-    + (i.notes?`<div style="margin-top:6px">${esc(i.notes)}</div>`:"")
-    + verdictHTML(i)
-    + (i.address?`<div class="pop-who" style="margin-top:6px">📍 ${esc(i.address)}</div>`:"")
-    + `<div style="margin-top:8px"><a target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=${i.lat},${i.lng}">Open in Google Maps ↗</a></div>`
-    + adminButtons(i);
+function popupHTML(p){
+  const c=CAT[p.cat]||CAT.gem;
+  return `<b>${esc(p.title)}</b><div class="pop-who">${c.emoji} ${esc(c.label)} · from ${esc(joinNames(p.names))}</div>`
+    + `<div style="margin-top:6px">${recsHTML(p).replace('class="note"','')}</div>`
+    + verdictHTML(p)
+    + (p.address?`<div class="pop-who" style="margin-top:6px">📍 ${esc(p.address)}</div>`:"")
+    + `<div style="margin-top:8px"><a target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=${p.lat},${p.lng}">Open in Google Maps ↗</a></div>`
+    + adminButtons(p);
 }
 
 /* ---------- leaderboard maths ----------
    Each recommender's score = the average of Anirudh's star ratings for
-   their visited picks. Ties go to whoever has more visited picks. */
+   the places they recommended and he visited. A place recommended by
+   several people counts for each of them. Ties go to whoever has more
+   visited places. */
 function leaderboard(){
   const by={};
-  items.forEach(i=>{
-    const k=keyOf(i.name); if(!k) return;
-    const r = by[k] ||= {key:k, name:i.name.trim(), picks:0, ratings:[]};
-    if(r.name===r.name.toLowerCase() && i.name.trim()!==i.name.trim().toLowerCase()) r.name=i.name.trim(); // prefer "Priya" over "priya"
-    r.picks++; if(i.rating) r.ratings.push(i.rating);
-  });
+  places.forEach(p=>p.people.forEach((k,n)=>{
+    const r = by[k] ||= {key:k, name:p.names[n], picks:0, ratings:[]};
+    if(r.name===r.name.toLowerCase() && p.names[n]!==p.names[n].toLowerCase()) r.name=p.names[n]; // prefer "Priya" over "priya"
+    r.picks++; if(p.rating) r.ratings.push(p.rating);
+  }));
   const all=Object.values(by);
   const ranked=all.filter(r=>r.ratings.length)
     .map(r=>({...r, avg:r.ratings.reduce((a,b)=>a+b,0)/r.ratings.length}))
@@ -604,11 +658,11 @@ function leaderboard(){
 /* ---------- main render ---------- */
 function plot(list){
   layer.clearLayers(); markers={};
-  list.forEach(i=>{
-    if(i.lat==null||i.lng==null||isNaN(i.lat)) return;
-    const m=L.marker([i.lat,i.lng],{icon:pinIcon(i.cat,i.rating)}).bindPopup(popupHTML(i)).addTo(layer);
-    m.on("click",()=>highlight(i.id,false));
-    markers[i.id]=m;
+  list.forEach(p=>{
+    if(isNaN(p.lat)||isNaN(p.lng)) return;
+    const m=L.marker([p.lat,p.lng],{icon:pinIcon(p.cat,p.rating)}).bindPopup(popupHTML(p)).addTo(layer);
+    m.on("click",()=>highlight(p.id,false));
+    markers[p.id]=m;
   });
 }
 function renderBoard(){
@@ -616,28 +670,28 @@ function renderBoard(){
   if(tab==="leaders") return renderLeaders();
 
   let pool = tab==="rated"
-    ? items.filter(i=>i.rating).sort((a,b)=>b.rating-a.rating || String(b.visited).localeCompare(String(a.visited)))
-    : items;
-  if(person) pool = pool.filter(i=>keyOf(i.name)===person);
+    ? places.filter(p=>p.rating).sort((a,b)=>b.rating-a.rating || String(b.visited).localeCompare(String(a.visited)))
+    : places;
+  if(person) pool = pool.filter(p=>p.people.includes(person));
 
   if(tab==="rated"){
     $("count").textContent = pool.length
       ? `${pool.length} place${pool.length>1?"s":""} Anirudh has tried, best first`
       : "Anirudh hasn't rated anything yet. Check back soon!";
   } else {
-    const people = new Set(pool.map(i=>keyOf(i.name))).size;
-    const visited = pool.filter(i=>i.rating).length;
+    const people = new Set(pool.flatMap(p=>p.people)).size;
+    const visited = pool.filter(p=>p.rating).length;
     $("count").textContent = pool.length
-      ? `${pool.length} pick${pool.length>1?"s":""} from ${people} ${people>1?"people":"person"}${visited?` · ${visited} visited`:""}`
+      ? `${pool.length} place${pool.length>1?"s":""} from ${people} ${people>1?"people":"person"}${visited?` · ${visited} visited`:""}`
       : "No picks yet — be the first!";
   }
 
-  const used = CATS.filter(c=>pool.some(i=>i.cat===c.id));
+  const used = CATS.filter(c=>pool.some(p=>p.cat===c.id));
   if(filter!=="all" && !used.some(c=>c.id===filter)) filter="all";
   const chips=[];
   if(person){
-    const nm=(leaderboard().ranked.concat(leaderboard().waiting).find(r=>r.key===person)||{}).name||person;
-    chips.push(`<button class="chip on" data-p="clear">From ${esc(nm.trim())} ✕</button>`);
+    const lb=leaderboard(); const nm=(lb.ranked.concat(lb.waiting).find(r=>r.key===person)||{}).name||person;
+    chips.push(`<button class="chip on" data-p="clear">From ${esc(nm)} ✕</button>`);
   }
   chips.push(`<button class="chip ${filter==="all"?"on":""}" data-f="all">All</button>`);
   used.forEach(c=>chips.push(`<button class="chip ${filter===c.id?"on":""}" data-f="${c.id}">${c.emoji} ${esc(c.label.split(" ")[0].replace(/,$/,""))}</button>`));
@@ -647,12 +701,13 @@ function renderBoard(){
     renderBoard();
   });
 
-  const shown = pool.filter(i=>filter==="all"||i.cat===filter);
+  const shown = pool.filter(p=>filter==="all"||p.cat===filter);
   plot(shown);
   $("list").innerHTML = shown.length ? shown.map(itemHTML).join("") : `<div class="empty">Nothing here yet.</div>`;
   [...$("list").children].forEach(el=>el.dataset.id && (el.onclick=e=>{ if(!e.target.closest(".mini")) highlight(el.dataset.id,true); }));
 
-  if(justAdded && markers[justAdded]){ const id=justAdded; justAdded=null; setTimeout(()=>highlight(id,true),300); }
+  const ja = justAdded && placeOf[justAdded] && placeOf[justAdded].id;
+  if(ja && markers[ja]){ justAdded=null; setTimeout(()=>highlight(ja,true),300); }
   else fitAll();
 }
 function fitAll(){ if(layer.getLayers().length) bigMap.fitBounds(layer.getBounds().pad(0.2),{maxZoom:14}); }
@@ -661,14 +716,14 @@ function renderLeaders(){
   const {ranked, waiting} = leaderboard();
   $("count").textContent = "Whose picks Anirudh liked best, by average rating";
   $("chips").innerHTML = "";
-  plot(items.filter(i=>i.rating));
-  if(!layer.getLayers().length) plot(items);
+  plot(places.filter(p=>p.rating));
+  if(!layer.getLayers().length) plot(places);
   const medal=["🥇","🥈","🥉"];
   let h="";
   if(ranked.length){
     h += ranked.map((r,n)=>`<div class="leader" data-p="${esc(r.key)}">
       <div class="rank ${n<3?"medal":""}">${n<3?medal[n]:n+1}</div>
-      <div style="min-width:0"><h3>${esc(r.name)}</h3><div class="sub">${r.ratings.length} of ${r.picks} pick${r.picks>1?"s":""} visited</div></div>
+      <div style="min-width:0"><h3>${esc(r.name)}</h3><div class="sub">${r.ratings.length} of ${r.picks} place${r.picks>1?"s":""} visited</div></div>
       <div class="score"><b>${r.avg.toFixed(1)}</b>${stars(r.avg)}</div>
     </div>`).join("");
   } else {
@@ -676,9 +731,9 @@ function renderLeaders(){
   }
   if(waiting.length){
     h += `<div class="section-lbl">Waiting for a visit</div>` + waiting.map(r=>`<div class="leader wait" data-p="${esc(r.key)}" style="cursor:pointer">
-      <div class="rank">·</div><div><h3 style="font-weight:500">${esc(r.name)}</h3><div class="sub">${r.picks} pick${r.picks>1?"s":""}, none visited yet</div></div></div>`).join("");
+      <div class="rank">·</div><div><h3 style="font-weight:500">${esc(r.name)}</h3><div class="sub">${r.picks} place${r.picks>1?"s":""}, none visited yet</div></div></div>`).join("");
   }
-  h += `<div class="howto">Each person's score is the average of Anirudh's star ratings for the places they recommended and he visited. Recommend more good places to climb the board.</div>`;
+  h += `<div class="howto">Each person's score is the average of Anirudh's star ratings for the places they recommended and he visited. If two people recommended the same place, both get the credit. Recommend more good places to climb the board.</div>`;
   $("list").innerHTML = h;
   [...$("list").querySelectorAll("[data-p]")].forEach(el=>el.onclick=()=>{ person=el.dataset.p; filter="all"; tab="picks"; renderBoard(); });
   fitAll();
@@ -732,24 +787,27 @@ function paintStars(){ [...$("starpick").children].forEach((b,n)=>b.classList.to
 $("starpick").innerHTML=[1,2,3,4,5].map(n=>`<button type="button" data-n="${n}" aria-label="${n} star${n>1?"s":""}">★</button>`).join("");
 $("starpick").onclick=e=>{ const b=e.target.closest("button"); if(!b) return; rateVal=+b.dataset.n; paintStars(); };
 function openRate(id){
-  const i=items.find(x=>x.id===id); if(!i) return;
-  rateId=id; rateVal=i.rating||0; paintStars();
-  $("rateTitle").textContent=i.title;
-  $("rateWho").textContent=`Recommended by ${i.name}`+(i.notes?` — “${i.notes}”`:"");
-  $("rateReview").value=i.review||"";
-  $("rateDate").value=(i.visited||"").slice(0,10) || new Date().toLocaleDateString("en-CA");
-  $("rateClear").classList.toggle("hidden",!i.rating);
+  const p=places.find(x=>x.id===id); if(!p) return;
+  rateId=id; rateVal=p.rating||0; paintStars();
+  $("rateTitle").textContent=p.title;
+  $("rateWho").textContent=`Recommended by ${joinNames(p.names)}`+(p.recs.length===1&&p.recs[0].notes?` — “${p.recs[0].notes}”`:"");
+  $("rateReview").value=p.review||"";
+  $("rateDate").value=(p.visited||"").slice(0,10) || new Date().toLocaleDateString("en-CA");
+  $("rateClear").classList.toggle("hidden",!p.rating);
   bigMap && bigMap.closePopup();
   openModal("rateModal");
 }
+// A place's rating lives on one of its rows in the sheet; the page shares it
+// with everyone who recommended that place.
 async function sendRating(rating){
   const btn=$("rateSave"); btn.disabled=true;
-  const body={action:"rate", key:adminKey, id:rateId, rating, review: rating?$("rateReview").value.trim():"", visited: rating?$("rateDate").value:""};
+  const p=places.find(x=>x.id===rateId);
+  const review = rating?$("rateReview").value.trim():"", visited = rating?$("rateDate").value:"";
+  const rows = rating ? [p.rateRow] : p.picks.filter(x=>x.rating).map(x=>x.id);
   try{
-    await api(body);
-    const i=items.find(x=>x.id===rateId);
-    Object.assign(i,{rating, review:body.review, visited:body.visited});
-    closeModal("rateModal"); renderBoard(); toast(rating?"Saved ⭐":"Rating removed");
+    for(const id of rows) await api({action:"rate", key:adminKey, id, rating, review, visited});
+    rows.forEach(id=>Object.assign(items.find(x=>x.id===id),{rating, review, visited}));
+    buildPlaces(); closeModal("rateModal"); renderBoard(); toast(rating?"Saved ⭐":"Rating removed");
   }catch(e){ adminFail(e); }
   finally{ btn.disabled=false; }
 }
@@ -765,11 +823,13 @@ document.addEventListener("click", async e=>{
   const h=e.target.closest("[data-hide]");
   if(!h) return;
   e.stopPropagation();
-  if(!h.classList.contains("armed")){ h.classList.add("armed"); h.textContent="Tap again to hide"; setTimeout(()=>{ h.classList.remove("armed"); h.textContent="Hide"; },3000); return; }
+  if(!h.classList.contains("armed")){ const t=h.textContent; h.classList.add("armed"); h.textContent="Tap again to hide"; setTimeout(()=>{ h.classList.remove("armed"); h.textContent=t; },3000); return; }
   h.disabled=true;
+  const p=places.find(x=>x.id===h.dataset.hide);
   try{
-    await api({action:"hide", key:adminKey, id:h.dataset.hide});
-    items=items.filter(x=>x.id!==h.dataset.hide); bigMap.closePopup(); renderBoard(); toast("Hidden from the map");
+    for(const x of p.picks) await api({action:"hide", key:adminKey, id:x.id});
+    const gone=new Set(p.picks.map(x=>x.id)); items=items.filter(x=>!gone.has(x.id));
+    buildPlaces(); bigMap.closePopup(); renderBoard(); toast("Hidden from the map");
   }catch(err){ adminFail(err); h.disabled=false; }
 });
 
