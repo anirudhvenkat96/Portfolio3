@@ -107,7 +107,7 @@ textarea{resize:vertical;min-height:84px;line-height:1.45}
 .board{display:grid;grid-template-columns:minmax(0,1fr) 380px;height:calc(100dvh - 58px)}
 .board .map{position:relative}
 #bigmap{position:absolute;inset:0}
-.side{background:var(--paper);border-left:1px solid var(--line);display:flex;flex-direction:column;min-height:0}
+.side{background:var(--paper);border-left:1px solid var(--line);display:flex;flex-direction:column;min-height:0;min-width:0}
 .side header{padding:18px 20px 12px;border-bottom:1px solid var(--line)}
 .side header h2{font-size:24px}
 .side header p{margin:4px 0 12px;color:var(--muted);font-size:14px}
@@ -136,10 +136,65 @@ textarea{resize:vertical;min-height:84px;line-height:1.45}
 .leaflet-popup-content b{font-size:14.5px}
 .pop-who{color:var(--muted);font-size:12.5px}
 
+/* tabs */
+.tabs{display:flex;gap:4px;background:#efe6d6;border-radius:12px;padding:4px;margin-bottom:10px}
+.tab{flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;border:0;background:transparent;border-radius:9px;padding:8px 4px;font-size:13.5px;font-weight:600;color:var(--muted);cursor:pointer;white-space:nowrap}
+.tab.on{background:#fff;color:var(--ink);box-shadow:0 1px 3px rgba(60,40,10,.12)}
+
+/* ratings */
+.stars{color:var(--saffron);letter-spacing:1px;font-size:14px;white-space:nowrap}
+.stars .off{color:#dccfb8}
+.visited{display:inline-block;font-size:11.5px;font-weight:600;color:#3f7d4e;background:#e4f1e6;border-radius:999px;padding:1px 8px;margin-left:6px;vertical-align:1px}
+.verdict{margin-top:8px;padding:9px 11px;background:#fdf3e1;border-radius:10px;font-size:13.5px;line-height:1.45;color:#4a3d30}
+.verdict .lbl{display:flex;align-items:center;gap:8px;font-size:11.5px;font-weight:600;color:var(--madder);text-transform:uppercase;letter-spacing:.06em;margin-bottom:3px}
+.verdict .when{margin-left:auto;text-transform:none;letter-spacing:0;font-weight:500;color:var(--muted)}
+.bigscore{flex:none;width:44px;text-align:center;font-family:Fraunces,serif;font-weight:700;font-size:22px;color:var(--saffron);line-height:1.1}
+.bigscore small{display:block;font-family:Inter,sans-serif;font-size:10.5px;font-weight:600;color:var(--muted)}
+
+/* leaderboard */
+.section-lbl{padding:14px 20px 4px;font-size:12px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
+.leader{display:flex;align-items:center;gap:12px;padding:12px 20px;cursor:pointer;transition:background .12s}
+.leader:hover{background:#fbf5ea}
+.rank{flex:none;width:30px;text-align:center;font-family:Fraunces,serif;font-weight:700;font-size:18px;color:var(--muted)}
+.rank.medal{font-size:24px}
+.leader h3{font-family:Inter,sans-serif;font-size:15px;font-weight:600}
+.leader .sub{font-size:12.5px;color:var(--muted);margin-top:2px}
+.leader .score{margin-left:auto;text-align:right}
+.leader .score b{font-family:Fraunces,serif;font-size:21px}
+.leader .score .stars{display:block;font-size:11px}
+.leader.wait{cursor:default;padding-top:8px;padding-bottom:8px}
+.leader.wait:hover{background:none}
+.howto{padding:14px 20px 20px;font-size:12.5px;color:var(--muted);line-height:1.5}
+
+/* rated pin badge */
+.pinwrap{position:relative;width:34px;height:34px}
+.pr{position:absolute;top:-9px;right:-14px;background:var(--saffron);color:#fff;font:700 10.5px/1 Inter,sans-serif;border-radius:999px;padding:3px 5px;border:1.5px solid #fff;white-space:nowrap;box-shadow:0 1px 3px rgba(0,0,0,.25)}
+
+/* admin */
+.adminbar{display:none;font-size:13px;color:var(--madder);font-weight:600;margin-right:12px;align-items:center;gap:4px}
+body.admin .adminbar{display:inline-flex}
+.adm{display:none}
+body.admin .adm{display:inline-block}
+.mini{border:1px solid var(--line);background:#fff;border-radius:999px;padding:5px 11px;font-size:12.5px;font-weight:600;cursor:pointer;margin:8px 6px 0 0;color:var(--ink)}
+.mini.rate{border-color:var(--indigo);color:var(--indigo)}
+.mini.warn{color:var(--madder)}
+.mini.armed{background:var(--madder);border-color:var(--madder);color:#fff}
+.modal{position:fixed;inset:0;background:rgba(42,33,24,.45);display:grid;place-items:center;z-index:10000;padding:16px}
+.modal .card{width:100%;max-width:440px;max-height:calc(100dvh - 32px);overflow:auto}
+.modal h3{font-size:22px}
+.starpick{display:flex;gap:4px;margin:12px 0 14px}
+.starpick button{font-size:36px;background:none;border:0;cursor:pointer;color:#dccfb8;padding:0 2px;line-height:1;transition:transform .1s}
+.starpick button.on{color:var(--saffron)}
+.starpick button:active{transform:scale(.9)}
+input[type=date],input[type=password]{width:100%;border:1.5px solid var(--line);background:#fff;border-radius:12px;padding:12px 14px;font-size:16px;outline:none}
+.btn.warn{color:var(--madder)}
+.err{color:var(--madder);min-height:1em}
+
 .toast{position:fixed;left:50%;bottom:24px;transform:translateX(-50%);background:var(--ink);color:#fff;padding:10px 16px;border-radius:999px;font-size:14px;z-index:9999;box-shadow:var(--shadow)}
 
 @media (max-width:820px){
-  .board{grid-template-columns:1fr;grid-template-rows:46dvh auto;height:auto}
+  .board{grid-template-columns:minmax(0,1fr);grid-template-rows:46dvh auto;height:auto}
+  .tab{font-size:12.5px;padding:8px 2px}
   .board .map{min-height:46dvh;position:sticky;top:0;z-index:1}
   .side{border-left:0;border-top:1px solid var(--line);position:relative;z-index:2;border-radius:18px 18px 0 0;margin-top:-14px;box-shadow:0 -6px 20px rgba(60,40,10,.08)}
   .list{overflow:visible}
@@ -156,6 +211,7 @@ textarea{resize:vertical;min-height:84px;line-height:1.45}
     Amdavad Must-Dos
   </button>
   <div class="spacer"></div>
+  <span class="adminbar">🔑 Admin · <button class="link" id="logout">log out</button></span>
   <div class="steps" id="steps" aria-hidden="true"><i></i><i></i><i></i></div>
 </div>
 
@@ -228,7 +284,11 @@ textarea{resize:vertical;min-height:84px;line-height:1.45}
     <aside class="side">
       <header>
         <div class="thanks hidden" id="thanks"></div>
-        <h2>The list so far</h2>
+        <div class="tabs" id="tabs" role="tablist">
+          <button class="tab on" data-tab="picks">All picks</button>
+          <button class="tab" data-tab="rated">⭐ Top rated</button>
+          <button class="tab" data-tab="leaders">🏆 Leaderboard</button>
+        </div>
         <p id="count">Loading recommendations…</p>
         <div class="chips" id="chips"></div>
       </header>
@@ -240,6 +300,45 @@ textarea{resize:vertical;min-height:84px;line-height:1.45}
     </aside>
   </div>
 </section>
+
+<!-- ============ admin: passcode ============ -->
+<div class="modal hidden" id="loginModal">
+  <div class="card">
+    <h3>Admin mode</h3>
+    <p class="hint" style="margin:6px 0 14px">Enter the passcode from your backend script to rate and review places.</p>
+    <input type="password" id="pass" autocomplete="current-password" placeholder="Passcode">
+    <div class="hint err" id="loginErr"></div>
+    <div class="actions">
+      <button class="btn ghost" id="loginCancel">Cancel</button>
+      <div class="grow"></div>
+      <button class="btn primary" id="loginGo">Unlock</button>
+    </div>
+  </div>
+</div>
+
+<!-- ============ admin: rate a place ============ -->
+<div class="modal hidden" id="rateModal">
+  <div class="card">
+    <div class="kicker" style="margin-top:0">Your verdict</div>
+    <h3 id="rateTitle"></h3>
+    <div class="hint" id="rateWho" style="margin-top:2px"></div>
+    <div class="starpick" id="starpick" aria-label="Rating"></div>
+    <div class="field">
+      <label class="f" for="rateReview">Review</label>
+      <textarea id="rateReview" maxlength="600" placeholder="How was it? What would you tell the next newcomer?"></textarea>
+    </div>
+    <div class="field">
+      <label class="f" for="rateDate">Visited on</label>
+      <input type="date" id="rateDate">
+    </div>
+    <div class="actions">
+      <button class="btn ghost warn" id="rateClear">Remove rating</button>
+      <div class="grow"></div>
+      <button class="btn ghost" id="rateCancel">Cancel</button>
+      <button class="btn primary" id="rateSave">Save</button>
+    </div>
+  </div>
+</div>
 
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 <script>
@@ -279,16 +378,21 @@ async function loadAll(){
   const j = await r.json();
   return j.items||[];
 }
+// text/plain keeps this a "simple" request (no CORS preflight to Apps Script)
+async function api(body){
+  const r = await fetch(API_URL,{method:"POST",headers:{"Content-Type":"text/plain;charset=utf-8"},body:JSON.stringify(body)});
+  const j = await r.json();
+  if(!j.ok) throw new Error(j.error||"Request failed");
+  return j;
+}
 async function save(rec){
   if(!API_URL){
     const all = store("amd_preview")||[]; all.push(rec); store("amd_preview",all); return rec;
   }
-  // text/plain keeps this a "simple" request (no CORS preflight to Apps Script)
-  const r = await fetch(API_URL,{method:"POST",headers:{"Content-Type":"text/plain;charset=utf-8"},body:JSON.stringify(rec)});
-  const j = await r.json();
-  if(!j.ok) throw new Error(j.error||"Save failed");
+  const j = await api(rec);
   return j.item||rec;
 }
+function unstore(k){try{localStorage.removeItem(k)}catch(e){}}
 
 /* ---------- state ---------- */
 const draft = {name:"",cat:"",title:"",address:"",lat:null,lng:null,notes:""};
@@ -332,9 +436,10 @@ function tiles(){
     attribution:'Tiles &copy; Esri &mdash; Esri, HERE, Garmin, &copy; OpenStreetMap contributors'
   });
 }
-function pinIcon(cat){
+function pinIcon(cat, rating){
   const c = CAT[cat]||CAT.gem;
-  return L.divIcon({className:"",html:`<div class="pin" style="background:${c.color}"><span>${c.emoji}</span></div>`,iconSize:[34,34],iconAnchor:[17,34],popupAnchor:[0,-30]});
+  const badge = rating ? `<b class="pr">★${rating}</b>` : "";
+  return L.divIcon({className:"",html:`<div class="pinwrap"><div class="pin" style="background:${c.color}"><span>${c.emoji}</span></div>${badge}</div>`,iconSize:[34,34],iconAnchor:[17,34],popupAnchor:[0,-30]});
 }
 function initPickMap(){
   if(!pickMap){
@@ -418,7 +523,7 @@ $("submit").onclick = async ()=>{
 };
 
 /* ================= SCREEN 3 ================= */
-let bigMap, layer, items=[], filter="all", justAdded=null, markers={};
+let bigMap, layer, items=[], filter="all", person=null, tab="picks", justAdded=null, markers={};
 async function initBoard(){
   if(!bigMap){
     bigMap = L.map("bigmap",{zoomControl:false}).setView(CENTER,12);
@@ -428,41 +533,157 @@ async function initBoard(){
   }
   setTimeout(()=>bigMap.invalidateSize(),60);
   try{ items = await loadAll(); }catch(e){ $("count").textContent="Couldn't load the list right now."; }
+  items.forEach(i=>{ i.rating = Number(i.rating)||0; });
   items.sort((a,b)=>String(b.ts).localeCompare(String(a.ts)));
   renderBoard();
 }
-function renderBoard(){
-  const people = new Set(items.map(i=>i.name.trim().toLowerCase())).size;
-  $("count").textContent = items.length
-    ? `${items.length} pick${items.length>1?"s":""} from ${people} ${people>1?"people":"person"}`
-    : "No picks yet — be the first!";
-  const used = CATS.filter(c=>items.some(i=>i.cat===c.id));
-  $("chips").innerHTML = [`<button class="chip ${filter==="all"?"on":""}" data-f="all">All</button>`]
-    .concat(used.map(c=>`<button class="chip ${filter===c.id?"on":""}" data-f="${c.id}">${c.emoji} ${esc(c.label.split(" ")[0].replace(/,$/,""))}</button>`)).join("");
-  [...$("chips").children].forEach(b=>b.onclick=()=>{filter=b.dataset.f; renderBoard();});
 
-  const shown = items.filter(i=>filter==="all"||i.cat===filter);
+/* ---------- small renderers ---------- */
+const keyOf = n => String(n||"").trim().toLowerCase();
+function stars(n, size){
+  const r=Math.round(n);
+  return `<span class="stars"${size?` style="font-size:${size}px"`:""}>${"★".repeat(r)}<span class="off">${"★".repeat(5-r)}</span></span>`;
+}
+function fmtDate(v){
+  if(!v) return "";
+  const d=new Date(String(v).slice(0,10)+"T00:00");
+  return isNaN(d) ? "" : d.toLocaleDateString("en-GB",{day:"numeric",month:"short",year:"numeric"});
+}
+function verdictHTML(i){
+  if(!i.rating) return "";
+  return `<div class="verdict"><div class="lbl">Anirudh's verdict ${stars(i.rating,13)}${i.visited?`<span class="when">${esc(fmtDate(i.visited))}</span>`:""}</div>${i.review?esc(i.review):"<i>No review yet.</i>"}</div>`;
+}
+function adminButtons(i){
+  return `<button class="mini rate adm" data-rate="${esc(i.id)}">${i.rating?"✏️ Edit rating":"⭐ Rate"}</button><button class="mini warn adm" data-hide="${esc(i.id)}">Hide</button>`;
+}
+function itemHTML(i){
+  const c=CAT[i.cat]||CAT.gem;
+  const lead = tab==="rated"
+    ? `<div class="bigscore">${i.rating}<small>/ 5</small></div>`
+    : `<div class="badge" style="background:${c.color}1f">${c.emoji}</div>`;
+  return `<div class="item ${mine.has(i.id)?"mine":""}" data-id="${esc(i.id)}">
+    ${lead}
+    <div style="min-width:0;flex:1">
+      <h3>${esc(i.title)}${i.rating&&tab!=="rated"?`<span class="visited">✓ Visited</span>`:""}</h3>
+      <div class="who">${esc(i.name)} · ${esc(c.label)}</div>
+      ${i.notes?`<div class="note">${esc(i.notes)}</div>`:""}
+      ${verdictHTML(i)}
+      ${adminButtons(i)}
+    </div>
+  </div>`;
+}
+function popupHTML(i){
+  const c=CAT[i.cat]||CAT.gem;
+  return `<b>${esc(i.title)}</b><div class="pop-who">${c.emoji} ${esc(c.label)} · from ${esc(i.name)}</div>`
+    + (i.notes?`<div style="margin-top:6px">${esc(i.notes)}</div>`:"")
+    + verdictHTML(i)
+    + (i.address?`<div class="pop-who" style="margin-top:6px">📍 ${esc(i.address)}</div>`:"")
+    + `<div style="margin-top:8px"><a target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=${i.lat},${i.lng}">Open in Google Maps ↗</a></div>`
+    + adminButtons(i);
+}
+
+/* ---------- leaderboard maths ----------
+   Each recommender's score = the average of Anirudh's star ratings for
+   their visited picks. Ties go to whoever has more visited picks. */
+function leaderboard(){
+  const by={};
+  items.forEach(i=>{
+    const k=keyOf(i.name); if(!k) return;
+    const r = by[k] ||= {key:k, name:i.name.trim(), picks:0, ratings:[]};
+    if(r.name===r.name.toLowerCase() && i.name.trim()!==i.name.trim().toLowerCase()) r.name=i.name.trim(); // prefer "Priya" over "priya"
+    r.picks++; if(i.rating) r.ratings.push(i.rating);
+  });
+  const all=Object.values(by);
+  const ranked=all.filter(r=>r.ratings.length)
+    .map(r=>({...r, avg:r.ratings.reduce((a,b)=>a+b,0)/r.ratings.length}))
+    .sort((a,b)=>b.avg-a.avg || b.ratings.length-a.ratings.length || b.picks-a.picks || a.name.localeCompare(b.name));
+  const waiting=all.filter(r=>!r.ratings.length).sort((a,b)=>b.picks-a.picks||a.name.localeCompare(b.name));
+  return {ranked, waiting};
+}
+
+/* ---------- main render ---------- */
+function plot(list){
   layer.clearLayers(); markers={};
-  shown.forEach(i=>{
-    if(i.lat==null||i.lng==null) return;
-    const c=CAT[i.cat]||CAT.gem;
-    const m=L.marker([i.lat,i.lng],{icon:pinIcon(i.cat)})
-      .bindPopup(`<b>${esc(i.title)}</b><div class="pop-who">${c.emoji} ${esc(c.label)} · from ${esc(i.name)}</div>${i.notes?`<div style="margin-top:6px">${esc(i.notes)}</div>`:""}${i.address?`<div class="pop-who" style="margin-top:6px">📍 ${esc(i.address)}</div>`:""}<div style="margin-top:8px"><a target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=${i.lat},${i.lng}">Open in Google Maps ↗</a></div>`)
-      .addTo(layer);
+  list.forEach(i=>{
+    if(i.lat==null||i.lng==null||isNaN(i.lat)) return;
+    const m=L.marker([i.lat,i.lng],{icon:pinIcon(i.cat,i.rating)}).bindPopup(popupHTML(i)).addTo(layer);
     m.on("click",()=>highlight(i.id,false));
     markers[i.id]=m;
   });
-  $("list").innerHTML = shown.length ? shown.map(i=>{
-    const c=CAT[i.cat]||CAT.gem;
-    return `<div class="item ${mine.has(i.id)?"mine":""}" data-id="${esc(i.id)}">
-      <div class="badge" style="background:${c.color}1f">${c.emoji}</div>
-      <div><h3>${esc(i.title)}</h3><div class="who">${esc(i.name)} · ${esc(c.label)}</div>${i.notes?`<div class="note">${esc(i.notes)}</div>`:""}</div>
-    </div>`;}).join("") : `<div class="empty">Nothing here yet.</div>`;
-  [...$("list").children].forEach(el=>el.dataset.id && (el.onclick=()=>highlight(el.dataset.id,true)));
+}
+function renderBoard(){
+  [...$("tabs").children].forEach(b=>b.classList.toggle("on",b.dataset.tab===tab));
+  if(tab==="leaders") return renderLeaders();
+
+  let pool = tab==="rated"
+    ? items.filter(i=>i.rating).sort((a,b)=>b.rating-a.rating || String(b.visited).localeCompare(String(a.visited)))
+    : items;
+  if(person) pool = pool.filter(i=>keyOf(i.name)===person);
+
+  if(tab==="rated"){
+    $("count").textContent = pool.length
+      ? `${pool.length} place${pool.length>1?"s":""} Anirudh has tried, best first`
+      : "Anirudh hasn't rated anything yet. Check back soon!";
+  } else {
+    const people = new Set(pool.map(i=>keyOf(i.name))).size;
+    const visited = pool.filter(i=>i.rating).length;
+    $("count").textContent = pool.length
+      ? `${pool.length} pick${pool.length>1?"s":""} from ${people} ${people>1?"people":"person"}${visited?` · ${visited} visited`:""}`
+      : "No picks yet — be the first!";
+  }
+
+  const used = CATS.filter(c=>pool.some(i=>i.cat===c.id));
+  if(filter!=="all" && !used.some(c=>c.id===filter)) filter="all";
+  const chips=[];
+  if(person){
+    const nm=(leaderboard().ranked.concat(leaderboard().waiting).find(r=>r.key===person)||{}).name||person;
+    chips.push(`<button class="chip on" data-p="clear">From ${esc(nm.trim())} ✕</button>`);
+  }
+  chips.push(`<button class="chip ${filter==="all"?"on":""}" data-f="all">All</button>`);
+  used.forEach(c=>chips.push(`<button class="chip ${filter===c.id?"on":""}" data-f="${c.id}">${c.emoji} ${esc(c.label.split(" ")[0].replace(/,$/,""))}</button>`));
+  $("chips").innerHTML = chips.join("");
+  [...$("chips").children].forEach(b=>b.onclick=()=>{
+    if(b.dataset.p) person=null; else filter=b.dataset.f;
+    renderBoard();
+  });
+
+  const shown = pool.filter(i=>filter==="all"||i.cat===filter);
+  plot(shown);
+  $("list").innerHTML = shown.length ? shown.map(itemHTML).join("") : `<div class="empty">Nothing here yet.</div>`;
+  [...$("list").children].forEach(el=>el.dataset.id && (el.onclick=e=>{ if(!e.target.closest(".mini")) highlight(el.dataset.id,true); }));
 
   if(justAdded && markers[justAdded]){ const id=justAdded; justAdded=null; setTimeout(()=>highlight(id,true),300); }
-  else if(layer.getLayers().length){ bigMap.fitBounds(layer.getBounds().pad(0.2),{maxZoom:14}); }
+  else fitAll();
 }
+function fitAll(){ if(layer.getLayers().length) bigMap.fitBounds(layer.getBounds().pad(0.2),{maxZoom:14}); }
+
+function renderLeaders(){
+  const {ranked, waiting} = leaderboard();
+  $("count").textContent = "Whose picks Anirudh liked best, by average rating";
+  $("chips").innerHTML = "";
+  plot(items.filter(i=>i.rating));
+  if(!layer.getLayers().length) plot(items);
+  const medal=["🥇","🥈","🥉"];
+  let h="";
+  if(ranked.length){
+    h += ranked.map((r,n)=>`<div class="leader" data-p="${esc(r.key)}">
+      <div class="rank ${n<3?"medal":""}">${n<3?medal[n]:n+1}</div>
+      <div style="min-width:0"><h3>${esc(r.name)}</h3><div class="sub">${r.ratings.length} of ${r.picks} pick${r.picks>1?"s":""} visited</div></div>
+      <div class="score"><b>${r.avg.toFixed(1)}</b>${stars(r.avg)}</div>
+    </div>`).join("");
+  } else {
+    h += `<div class="empty">No ratings yet. Once Anirudh visits a few places, the best recommenders show up here.</div>`;
+  }
+  if(waiting.length){
+    h += `<div class="section-lbl">Waiting for a visit</div>` + waiting.map(r=>`<div class="leader wait" data-p="${esc(r.key)}" style="cursor:pointer">
+      <div class="rank">·</div><div><h3 style="font-weight:500">${esc(r.name)}</h3><div class="sub">${r.picks} pick${r.picks>1?"s":""}, none visited yet</div></div></div>`).join("");
+  }
+  h += `<div class="howto">Each person's score is the average of Anirudh's star ratings for the places they recommended and he visited. Recommend more good places to climb the board.</div>`;
+  $("list").innerHTML = h;
+  [...$("list").querySelectorAll("[data-p]")].forEach(el=>el.onclick=()=>{ person=el.dataset.p; filter="all"; tab="picks"; renderBoard(); });
+  fitAll();
+}
+
 function highlight(id,fly){
   document.querySelectorAll(".item").forEach(el=>el.classList.toggle("active",el.dataset.id===id));
   const m=markers[id]; if(!m) return;
@@ -470,19 +691,102 @@ function highlight(id,fly){
     if(window.innerWidth<=820) window.scrollTo({top:0,behavior:"smooth"}); }
   else document.querySelector(`.item[data-id="${CSS.escape(id)}"]`)?.scrollIntoView({block:"nearest",behavior:"smooth"});
 }
+$("tabs").onclick=e=>{ const b=e.target.closest(".tab"); if(!b) return; tab=b.dataset.tab; person=null; filter="all"; renderBoard(); $("list").scrollTop=0; };
 $("addAnother").onclick=()=>{ $("thanks").classList.add("hidden"); show(1); setTimeout(()=>$("cat").focus(),100); };
 $("share").onclick=async()=>{
   const data={title:"One thing to do in Amdavad?",text:"Anirudh just moved to Ahmedabad — drop your one must-do on the map:",url:location.href.split("#")[0]};
   try{ if(navigator.share) await navigator.share(data); else { await navigator.clipboard.writeText(data.url); toast("Link copied"); } }catch(e){}
 };
 
-// Deep link: ...#map opens straight to the board.
+/* ================= ADMIN (Anirudh only) =================
+   Open the page with #admin on the end, enter the passcode set in the
+   backend script, and Rate / Hide buttons appear on every pick.
+   The passcode is checked by the backend on every change. */
+let adminKey = store("amd_admin") || null;
+function setAdmin(on){ document.body.classList.toggle("admin",!!on); }
+function openModal(id){ $(id).classList.remove("hidden"); }
+function closeModal(id){ $(id).classList.add("hidden"); }
+function logout(msg){ adminKey=null; unstore("amd_admin"); setAdmin(false); if(msg) toast(msg); }
+function adminFail(err){
+  if(/passcode/i.test(err.message)) logout("Passcode didn't match — open #admin to log in again");
+  else toast("Couldn't save — "+(err.message||"check your connection"));
+}
+
+$("loginGo").onclick = async ()=>{
+  const key=$("pass").value.trim(); if(!key) return;
+  $("loginGo").disabled=true; $("loginErr").textContent="";
+  try{
+    await api({action:"check", key});
+    adminKey=key; store("amd_admin",key); setAdmin(true); closeModal("loginModal");
+    toast("Admin mode on — tap ⭐ Rate on any pick");
+    if($("s3").classList.contains("hidden")) show(3);
+  }catch(e){ $("loginErr").textContent = /passcode/i.test(e.message) ? "That passcode didn't match." : "Couldn't reach the backend: "+e.message; }
+  finally{ $("loginGo").disabled=false; }
+};
+$("pass").addEventListener("keydown",e=>{ if(e.key==="Enter") $("loginGo").click(); });
+$("loginCancel").onclick=()=>closeModal("loginModal");
+$("logout").onclick=()=>logout("Logged out of admin mode");
+
+let rateId=null, rateVal=0;
+function paintStars(){ [...$("starpick").children].forEach((b,n)=>b.classList.toggle("on",n<rateVal)); }
+$("starpick").innerHTML=[1,2,3,4,5].map(n=>`<button type="button" data-n="${n}" aria-label="${n} star${n>1?"s":""}">★</button>`).join("");
+$("starpick").onclick=e=>{ const b=e.target.closest("button"); if(!b) return; rateVal=+b.dataset.n; paintStars(); };
+function openRate(id){
+  const i=items.find(x=>x.id===id); if(!i) return;
+  rateId=id; rateVal=i.rating||0; paintStars();
+  $("rateTitle").textContent=i.title;
+  $("rateWho").textContent=`Recommended by ${i.name}`+(i.notes?` — “${i.notes}”`:"");
+  $("rateReview").value=i.review||"";
+  $("rateDate").value=(i.visited||"").slice(0,10) || new Date().toLocaleDateString("en-CA");
+  $("rateClear").classList.toggle("hidden",!i.rating);
+  bigMap && bigMap.closePopup();
+  openModal("rateModal");
+}
+async function sendRating(rating){
+  const btn=$("rateSave"); btn.disabled=true;
+  const body={action:"rate", key:adminKey, id:rateId, rating, review: rating?$("rateReview").value.trim():"", visited: rating?$("rateDate").value:""};
+  try{
+    await api(body);
+    const i=items.find(x=>x.id===rateId);
+    Object.assign(i,{rating, review:body.review, visited:body.visited});
+    closeModal("rateModal"); renderBoard(); toast(rating?"Saved ⭐":"Rating removed");
+  }catch(e){ adminFail(e); }
+  finally{ btn.disabled=false; }
+}
+$("rateSave").onclick=()=>{ if(!rateVal) return toast("Tap a star first"); sendRating(rateVal); };
+$("rateClear").onclick=()=>sendRating(0);
+$("rateCancel").onclick=()=>closeModal("rateModal");
+document.querySelectorAll(".modal").forEach(m=>m.addEventListener("click",e=>{ if(e.target===m) m.classList.add("hidden"); }));
+
+// Rate / Hide buttons live in list items and map popups, so listen once at the top.
+document.addEventListener("click", async e=>{
+  const r=e.target.closest("[data-rate]");
+  if(r){ e.stopPropagation(); return openRate(r.dataset.rate); }
+  const h=e.target.closest("[data-hide]");
+  if(!h) return;
+  e.stopPropagation();
+  if(!h.classList.contains("armed")){ h.classList.add("armed"); h.textContent="Tap again to hide"; setTimeout(()=>{ h.classList.remove("armed"); h.textContent="Hide"; },3000); return; }
+  h.disabled=true;
+  try{
+    await api({action:"hide", key:adminKey, id:h.dataset.hide});
+    items=items.filter(x=>x.id!==h.dataset.hide); bigMap.closePopup(); renderBoard(); toast("Hidden from the map");
+  }catch(err){ adminFail(err); h.disabled=false; }
+});
+
+/* ================= start ================= */
+if(adminKey) setAdmin(true);
+// #map opens straight to the board; #admin opens admin login.
 // Returning contributors (already pinned something on this device) also land on the board.
-show(location.hash==="#map" || mine.size ? 3 : 1);
+show(location.hash==="#map" || location.hash==="#admin" || adminKey || mine.size ? 3 : 1);
+function maybeLogin(){
+  if(location.hash==="#admin" && !adminKey){ if($("s3").classList.contains("hidden")) show(3); openModal("loginModal"); setTimeout(()=>$("pass").focus(),50); }
+}
+maybeLogin();
+window.addEventListener("hashchange", maybeLogin);
 
 // Pick up new recommendations when someone switches back to the tab
 document.addEventListener("visibilitychange",()=>{
-  if(document.visibilityState==="visible" && !$("s3").classList.contains("hidden")) initBoard();
+  if(document.visibilityState==="visible" && !$("s3").classList.contains("hidden") && $("rateModal").classList.contains("hidden")) initBoard();
 });
 if(!API_URL) console.info("Preview mode: saving to this browser only. Set API_URL to go live.");
 </script>
