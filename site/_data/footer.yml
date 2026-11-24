@@ -4,12 +4,8 @@ footer_menu__settings:
       url: '/'
     - title: 'Projects'
       url: '/projects/'
-    - title: 'Elements'
-      url: '/elements/'
     - title: 'About'
       url: '/about/'
-    - title: 'Blog'
-      url: '/blog/'
 
 copyright_text_html: >-
-  <p> 2025 &copy; <a href="/">Vonge</a>. Template by <a href="https://cloudcannon.com/">CloudCannon</a>.</p>
+  <p>&copy; 2026 Venkat Anirudh Bodempudi</p>

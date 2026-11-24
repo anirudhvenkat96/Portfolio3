@@ -7,7 +7,6 @@ google_analytics: G-FVK3QEDQFZ
 plugins:
   - jekyll-bookshop
   - jekyll-sitemap
-  - jekyll/tagging
 
 # Multiple bookshops can be used on one website,
 # or different production / staging locations.
@@ -32,9 +31,6 @@ collections:
     permalink: /project/:slug
   testimonials:
     output: false
-  posts:
-    output: true
-    permalink: /blog/:slug
 
 defaults:
   - scope:
@@ -50,12 +46,3 @@ defaults:
       type: projects
     values:
       layout: project
-  - scope:
-      type: posts
-    values:
-      layout: post
-
-# Tags
-tag_page_dir: tag
-tag_page_layout: tag_page
-tag_permalink_style: /:title
